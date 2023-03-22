@@ -7,6 +7,6 @@
     @apply flex justify-center items-center gap-2 mb-3;
   }
   .key-caps {
-    @apply border-2 p-3 rounded-lg;
+    @apply border-2 p-3 rounded-lg bg-dark hover:scale-105 duration-75 ease-in hover:opacity-95;
   }
 }

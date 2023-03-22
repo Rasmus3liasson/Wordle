@@ -4,13 +4,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#4F4F4F",
+        background: "#292727",
+        dark: "#3D3B3A ",
         yellow: "#EFE81A",
         green: "#1CCC10",
-        red: "#EF4B1A",
+        red: "#a83232",
+        white: "#F0EAE4",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+      },
+      boxShadow: {
+        box: "0 10px 15px rgba(0, 0, 0, 0.3)",
+        img: "2px 10px 14px 0px rgba(38,37,37,0.75)",
       },
     },
   },
