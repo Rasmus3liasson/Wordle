@@ -5,17 +5,32 @@ export default function Keyboard() {
   const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä"];
   const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DELETE"];
 
-  function hej() {
-    alert("abajs");
+  function clickKeyBoard(event) {
+    const keys = [...row1, ...row2, ...row3];
+    const clickKey = event.target.innerText;
+
+    if (clickKey == "ENTER") {
+      return;
+    }
+    if (clickKey == "DELETE") {
+      return;
+    }
+    //condition to not make it able to click beetween keys
+    if (keys.includes(clickKey)) {
+      return clickKey;
+    }
   }
 
   return (
-    <div className="flex flex-col justify-center items-center mt-20">
+    <div
+      onClick={clickKeyBoard}
+      className="flex flex-col justify-center items-center mt-20"
+    >
       <div className="flex gap-1 mb-2">
         {row1.map((keyLetter) => {
           return (
             <div className="key-caps">
-              <p className="text-white text-xl">{keyLetter}</p>
+              <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
         })}
@@ -24,7 +39,7 @@ export default function Keyboard() {
         {row2.map((keyLetter) => {
           return (
             <div className="key-caps">
-              <p className="text-white text-xl">{keyLetter}</p>
+              <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
         })}
@@ -33,7 +48,7 @@ export default function Keyboard() {
         {row3.map((keyLetter) => {
           return (
             <div className="key-caps">
-              <p className="text-white text-xl">{keyLetter}</p>
+              <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
         })}
