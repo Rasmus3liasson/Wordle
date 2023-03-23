@@ -7,36 +7,7 @@ import Keyboard from "./component/Keyboard.tsx";
 
 function App() {
   const boardStart = BoardStart();
-
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const [letterGuess, setLetterGuess] = useState("");
-
-  useEffect(() => {
-    function handleKeyPress(event) {
-      //new array to make letters stay
-      const arr = [...letterGuess];
-
-      // when array contains 5 letters, then function won't work
-      if (arr.length === 5) {
-        return;
-      }
-
-      arr[activeIndex] = event.key.toUpperCase();
-
-      setLetterGuess(arr);
-
-      if (activeIndex < 4) {
-        setActiveIndex(activeIndex + 1);
-      }
-    }
-
-    document.addEventListener("keypress", handleKeyPress);
-
-    return () => {
-      document.removeEventListener("keypress", handleKeyPress);
-    };
-  });
 
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
@@ -48,6 +19,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              state={letterGuess}
+              setState={setLetterGuess}
               letterWord={letterGuess[index]}
               letter={letter}
               key={index}

@@ -5,6 +5,10 @@ export default function Keyboard() {
   const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä"];
   const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DELETE"];
 
+  function hej() {
+    alert("abajs");
+  }
+
   return (
     <div className="flex flex-col justify-center items-center mt-20">
       <div className="flex gap-1 mb-2">
