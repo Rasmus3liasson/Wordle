@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Board from "./component/Board.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
-import Keyboard from "./component/Keyboard.tsx";
+import { Keyboard } from "./component/Keyboard.tsx";
 
 /* import handleKeyEvents from "./component/handleKeyEvents.tsx"; */
 
