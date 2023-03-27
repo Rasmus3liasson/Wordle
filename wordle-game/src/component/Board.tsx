@@ -14,7 +14,12 @@ export default function Board(props) {
 
       arr[activeIndex] = event.key.toUpperCase();
 
-      props.setState(arr);
+      //only allow letters and no enter key letters
+      if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
+        props.setState(arr);
+      } else {
+        return false;
+      }
 
       if (activeIndex < 4) {
         setActiveIndex(activeIndex + 1);
