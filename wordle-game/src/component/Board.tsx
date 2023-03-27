@@ -5,7 +5,7 @@ export default function Board(props) {
   useEffect(() => {
     function handleKeyPress(event) {
       //new array to make letters stay
-      const arr = [...props.state];
+      let arr = [...props.state];
 
       // when array contains 5 letters, then function won't work
       if (arr.length === 5) {
@@ -18,6 +18,9 @@ export default function Board(props) {
 
       if (activeIndex < 4) {
         setActiveIndex(activeIndex + 1);
+      }
+      if (arr.length === 5) {
+        arr = [];
       }
     }
 

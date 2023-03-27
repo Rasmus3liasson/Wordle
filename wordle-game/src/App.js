@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Board from "./component/Board.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
 
-/* import handleKeyEvents from "./component/handleKeyEvents.tsx"; */
-
 function App() {
   const boardStart = BoardStart();
   const [letterGuess, setLetterGuess] = useState("");
+  const [letterGuess2, setLetterGuess2] = useState("");
+  const [letterGuess3, setLetterGuess3] = useState("");
+  const [letterGuess4, setLetterGuess4] = useState("");
+  const [letterGuess5, setLetterGuess5] = useState("");
+  const [letterGuess6, setLetterGuess6] = useState("");
+  let row = 0;
+
+  if (letterGuess.length === 5) {
+    row++;
+  }
 
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
@@ -21,9 +29,65 @@ function App() {
             <Board
               state={letterGuess}
               setState={setLetterGuess}
-              letterWord={letterGuess[index]}
               letter={letter}
               key={index}
+              letterWord={letterGuess[index]}
+            />
+          ))}
+        </div>
+
+        <div className="board-rows">
+          {boardStart.map((letter, index) => (
+            <Board
+              state={letterGuess2}
+              setState={setLetterGuess2}
+              letter={letter}
+              key={index}
+              letterWord={row === 1 ? letterGuess2[index] : ""}
+            />
+          ))}
+        </div>
+        <div className="board-rows">
+          {boardStart.map((letter, index) => (
+            <Board
+              state={letterGuess3}
+              setState={setLetterGuess3}
+              letter={letter}
+              key={index}
+              letterWord={row === 1 ? letterGuess3[index] : ""}
+            />
+          ))}
+        </div>
+        <div className="board-rows">
+          {boardStart.map((letter, index) => (
+            <Board
+              state={letterGuess4}
+              setState={setLetterGuess4}
+              letter={letter}
+              key={index}
+              letterWord={row === 1 ? letterGuess4[index] : ""}
+            />
+          ))}
+        </div>
+        <div className="board-rows">
+          {boardStart.map((letter, index) => (
+            <Board
+              state={letterGuess5}
+              setState={setLetterGuess5}
+              letter={letter}
+              key={index}
+              letterWord={row === 1 ? letterGuess5[index] : ""}
+            />
+          ))}
+        </div>
+        <div className="board-rows">
+          {boardStart.map((letter, index) => (
+            <Board
+              state={letterGuess6}
+              setState={setLetterGuess6}
+              letter={letter}
+              key={index}
+              letterWord={row === 1 ? letterGuess6[index] : ""}
             />
           ))}
         </div>
