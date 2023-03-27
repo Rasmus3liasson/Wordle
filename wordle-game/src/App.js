@@ -4,6 +4,7 @@ import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./component/checkGuess.js";
 import { generateRandomWord } from "./component/randomWord.js";
+import Clock from "./component/Clock.tsx";
 
 function App() {
   const foodList = "Biffa Marcu Polle".split(" ");
@@ -53,6 +54,9 @@ function App() {
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
       <div className="border-b-4 pb-7">
         <h1 className="text-7xl text-center mt-7">Wordle</h1>
+      </div>
+      <div>
+        <Clock firstWord={letterGuess} />
       </div>
 
       <div className="mt-12">
