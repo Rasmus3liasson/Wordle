@@ -9,4 +9,10 @@
   .key-caps {
     @apply border-2 p-3 rounded-lg bg-dark hover:scale-105 duration-75 ease-in hover:opacity-95;
   }
+  .yellow-color {
+    @apply bg-yellow;
+  }
+  .green-color {
+    @apply bg-green;
+  }
 }

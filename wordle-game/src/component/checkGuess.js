@@ -1,8 +1,9 @@
 export function checkGuess(wordFromUser, randomWord) {
-  const guessWord = wordFromUser.toUpperCase().split("");
+  const guessWord = wordFromUser.split("");
   const correctWord = randomWord.toUpperCase().split("");
 
   //array variables
+
   let letterArr = [];
   let incorrectArr = [];
   let sameIndexArr = [];
@@ -70,6 +71,8 @@ export function checkGuess(wordFromUser, randomWord) {
   if (guessWord.length != correctWord.length) {
     return false;
   }
+
+  letterArr = letterArr.map((obj) => Object.values(obj)[0]);
 
   return letterArr;
 }
