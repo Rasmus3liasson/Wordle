@@ -12,19 +12,19 @@ export default function Clock(props) {
         setSecond((s) => s + 1);
       }, 1000);
 
-      // Clean up the interval when the component is unmounted
+      // Clean up
       return () => clearInterval(intervalId);
     }
   }, [props.firstWord.length]);
 
-  // Update the minute and hour values if necessary
+  //updates if they overlaps
   if (second === 60) {
     setSecond(0);
-    setMinute((m) => m + 1);
+    setMinute((minutes) => minutes + 1);
   }
   if (minute === 60) {
     setMinute(0);
-    setHour((h) => h + 1);
+    setHour((hours) => hours + 1);
   }
 
   return (
