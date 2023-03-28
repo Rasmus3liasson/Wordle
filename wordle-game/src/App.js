@@ -26,8 +26,8 @@ function App() {
 
   function convertToString(word, index) {
     if (word.length === 5) {
-      const arrToString = word.toString().replace(/,/g, "");
-      const valueColor = checkGuess(arrToString, "SOLEN");
+      arrToString = word.toString().replace(/,/g, "");
+      valueColor = checkGuess(arrToString, "solen");
 
       if (valueColor[index] === "misplaced") {
         return "yellow-color";
@@ -36,10 +36,16 @@ function App() {
       } else {
         return "bg-dark";
       }
-    } else {
-      return "bg-dark";
     }
   }
+
+  //calling function so arrToString value isn't undefined so Clock component hava acces to the variable
+  convertToString(letterGuess);
+  convertToString(letterGuess2);
+  convertToString(letterGuess3);
+  convertToString(letterGuess4);
+  convertToString(letterGuess5);
+  convertToString(letterGuess6);
 
   if (letterGuess.length === 5) {
     row++;
