@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Board from "./component/Board.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
@@ -20,7 +20,8 @@ function App() {
   const [letterGuess6, setLetterGuess6] = useState("");
 
   let row = 0;
-  const randomWord = generateRandomWord(foodList, 5);
+  //useMemo to not make randomword change everytime
+  const randomWord = useMemo(() => generateRandomWord(foodList, 5), []);
   let valueColor;
   let arrToString;
 
@@ -56,6 +57,7 @@ function App() {
       <div className="border-b-4 pb-7">
         <h1 className="text-7xl text-center mt-7">Wordle</h1>
       </div>
+
       <div>
         <Clock
           firstWord={letterGuess}

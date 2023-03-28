@@ -6,16 +6,6 @@ export default function Board(props) {
 
   let { backgroundColor } = props;
 
-  /* for (let i = 0; i < props.color; i++) {
-    if (props.color[i] === "incorrect") {
-      backgroundColor = "yellow-color";
-    }
-  } */
-
-  /* if (props.color.includes("incorrect")) {
-    backgroundColor = "yellow-color";
-  } */
-
   useEffect(() => {
     function handleKeyPress(event) {
       //new array to make letters stay
