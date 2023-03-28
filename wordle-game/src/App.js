@@ -10,7 +10,7 @@ import SendResult from "./component/SendResult.tsx";
 function App() {
   const foodList = "Biffa Marcu Polle".split(" ");
 
-  const boardStart = BoardStart();
+  const boardStart = BoardStart(5);
 
   const [letterGuess, setLetterGuess] = useState("");
   const [letterGuess2, setLetterGuess2] = useState("");
