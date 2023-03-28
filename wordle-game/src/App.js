@@ -5,6 +5,7 @@ import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./component/checkGuess.js";
 import { generateRandomWord } from "./component/randomWord.js";
 import Clock from "./component/Clock.tsx";
+import SendResult from "./component/SendResult.tsx";
 
 function App() {
   const foodList = "Biffa Marcu Polle".split(" ");
@@ -21,10 +22,11 @@ function App() {
   let row = 0;
   const randomWord = generateRandomWord(foodList, 5);
   let valueColor;
+  let arrToString;
 
   function convertToString(word, event) {
     if (word.length == 5) {
-      let arrToString = word.toString().replace(/,/g, "");
+      arrToString = word.toString().replace(/,/g, "");
       valueColor = arrToString;
 
       valueColor = checkGuess(arrToString, "solen");
@@ -56,7 +58,11 @@ function App() {
         <h1 className="text-7xl text-center mt-7">Wordle</h1>
       </div>
       <div>
-        <Clock firstWord={letterGuess} />
+        <Clock
+          firstWord={letterGuess}
+          guessWord={arrToString}
+          randomWord={"SOLEN"}
+        />
       </div>
 
       <div className="mt-12">
@@ -134,6 +140,8 @@ function App() {
           ))}
         </div>
       </div>
+      {<div>{arrToString == "SOLEN" ? <SendResult /> : null}</div>}
+
       <div>
         <Keyboard />
       </div>

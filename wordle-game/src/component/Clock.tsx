@@ -6,16 +6,20 @@ export default function Clock(props) {
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
+    if (props.guessWord == props.randomWord) {
+      return;
+    }
+
     //start when letter has been entered
     if (props.firstWord.length >= 1) {
       const intervalId = setInterval(() => {
-        setSecond((s) => s + 1);
+        setSecond((second) => second + 1);
       }, 1000);
 
       // Clean up
       return () => clearInterval(intervalId);
     }
-  }, [props.firstWord.length]);
+  }, [props.firstWord.length, props.guessWord, props.randomWord]);
 
   //updates if they overlaps
   if (second === 60) {
