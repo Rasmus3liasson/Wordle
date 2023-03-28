@@ -24,33 +24,26 @@ function App() {
   let valueColor;
   let arrToString;
 
-  function convertToString(word, event) {
-    if (word.length == 5) {
-      arrToString = word.toString().replace(/,/g, "");
-      valueColor = arrToString;
+  function convertToString(word, index) {
+    if (word.length === 5) {
+      const arrToString = word.toString().replace(/,/g, "");
+      const valueColor = checkGuess(arrToString, "SOLEN");
 
-      valueColor = checkGuess(arrToString, "solen");
-
-      if (valueColor.includes("misplaced")) {
+      if (valueColor[index] === "misplaced") {
         return "yellow-color";
-      } else if (valueColor.includes("correct")) {
+      } else if (valueColor[index] === "correct") {
         return "green-color";
       } else {
         return "bg-dark";
       }
+    } else {
+      return "bg-dark";
     }
   }
 
   if (letterGuess.length === 5) {
     row++;
   }
-
-  let backgroundColor = convertToString(letterGuess);
-  let backgroundColor2 = convertToString(letterGuess2);
-  let backgroundColor3 = convertToString(letterGuess3);
-  let backgroundColor4 = convertToString(letterGuess4);
-  let backgroundColor5 = convertToString(letterGuess5);
-  let backgroundColor6 = convertToString(letterGuess6);
 
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
@@ -69,7 +62,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor}
+              backgroundColor={convertToString(letterGuess, index)}
               state={letterGuess}
               setState={setLetterGuess}
               letter={letter}
@@ -82,7 +75,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor2}
+              backgroundColor={convertToString(letterGuess2, index)}
               state={letterGuess2}
               setState={setLetterGuess2}
               letter={letter}
@@ -94,7 +87,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor3}
+              backgroundColor={convertToString(letterGuess3, index)}
               state={letterGuess3}
               setState={setLetterGuess3}
               letter={letter}
@@ -106,7 +99,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor4}
+              backgroundColor={convertToString(letterGuess4, index)}
               state={letterGuess4}
               setState={setLetterGuess4}
               letter={letter}
@@ -118,7 +111,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor5}
+              backgroundColor={convertToString(letterGuess5, index)}
               state={letterGuess5}
               setState={setLetterGuess5}
               letter={letter}
@@ -130,7 +123,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={backgroundColor6}
+              backgroundColor={convertToString(letterGuess6, index)}
               state={letterGuess6}
               setState={setLetterGuess6}
               letter={letter}
