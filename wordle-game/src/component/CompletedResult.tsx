@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SendResult() {
+export default function CompletedResult() {
   return (
     <div className="text-center mt-6">
       <h3>Grattis</h3>
