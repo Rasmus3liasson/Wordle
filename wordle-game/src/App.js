@@ -8,10 +8,10 @@ import Clock from "./component/Clock.tsx";
 import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
 import { words } from "./words/words.js";
+import ChooseLength from "./component/ChooseLength.tsx";
 
 function App() {
-  const boardStart = BoardStart(5);
-
+  const [selectValue, setSelectValue] = useState("5");
   const [letterGuess, setLetterGuess] = useState("");
   const [letterGuess2, setLetterGuess2] = useState("");
   const [letterGuess3, setLetterGuess3] = useState("");
@@ -20,9 +20,13 @@ function App() {
   const [letterGuess6, setLetterGuess6] = useState("");
 
   let row = 0;
+  const boardStart = BoardStart(selectValue);
 
   //useMemo to not make randomword change everytime
-  let randomWord = useMemo(() => generateRandomWord(words.split(" "), 5), []);
+  let randomWord = useMemo(
+    () => generateRandomWord(words.split(" "), selectValue),
+    []
+  );
   randomWord = randomWord.toUpperCase();
 
   let valueColor;
@@ -58,7 +62,14 @@ function App() {
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
       <div className="border-b-4 pb-7">
-        <h1 className="text-7xl text-center mt-7">{randomWord}</h1>
+        <h1 className="text-7xl text-center mt-7">Wordle</h1>
+      </div>
+
+      <div>
+        <ChooseLength
+          selectValue={selectValue}
+          setSelectValue={setSelectValue}
+        />
       </div>
 
       <div>
