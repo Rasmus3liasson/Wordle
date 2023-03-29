@@ -9,9 +9,11 @@ import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
 import { words } from "./words/words.js";
 import ChooseLength from "./component/ChooseLength.tsx";
+import UniqueLetters from "./component/UniqueLetters.tsx";
 
 function App() {
   const [selectValue, setSelectValue] = useState("5");
+  const [uniqueLetters, setUniqueLetters] = useState(true);
   const [letterGuess, setLetterGuess] = useState("");
   const [letterGuess2, setLetterGuess2] = useState("");
   const [letterGuess3, setLetterGuess3] = useState("");
@@ -24,7 +26,7 @@ function App() {
 
   //useMemo to not make randomword change everytime
   let randomWord = useMemo(
-    () => generateRandomWord(words.split(" "), selectValue),
+    () => generateRandomWord(words.split(" "), selectValue, uniqueLetters),
     []
   );
 
@@ -32,8 +34,7 @@ function App() {
 
   let valueColor;
   let arrToString;
-  console.log(randomWord);
-  console.log(selectValue);
+
   function convertToString(word, index) {
     if (word.length === boardStart.length) {
       arrToString = word.toString().replace(/,/g, "");
@@ -71,6 +72,12 @@ function App() {
         <ChooseLength
           selectValue={selectValue}
           setSelectValue={setSelectValue}
+        />
+      </div>
+      <div>
+        <UniqueLetters
+          uniqueLetters={uniqueLetters}
+          setUniqueLetters={setUniqueLetters}
         />
       </div>
 
