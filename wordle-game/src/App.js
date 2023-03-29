@@ -64,6 +64,8 @@ function App() {
           firstWord={letterGuess}
           guessWord={arrToString}
           randomWord={"SOLEN"}
+          lastGuess={letterGuess6.length}
+          boardStartLength={boardStart.length}
         />
       </div>
 
@@ -142,7 +144,15 @@ function App() {
           ))}
         </div>
       </div>
-      {<div>{arrToString == "SOLEN" ? <CompletedResult /> : null}</div>}
+      {
+        <div>
+          {arrToString == "SOLEN" ? <CompletedResult /> : null}
+          {letterGuess6.length >= boardStart.length &&
+          arrToString != "SOLEN" ? (
+            <FailedResult randomWord={"SOLEN"} />
+          ) : null}
+        </div>
+      }
 
       <div>
         <Keyboard />

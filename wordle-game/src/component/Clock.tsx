@@ -6,7 +6,11 @@ export default function Clock(props) {
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
-    if (props.guessWord == props.randomWord) {
+    //stop timer
+    if (
+      props.guessWord == props.randomWord ||
+      props.lastGuess >= props.boardStartLength
+    ) {
       return;
     }
 
