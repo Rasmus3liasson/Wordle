@@ -5,7 +5,8 @@ import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./component/checkGuess.js";
 import { generateRandomWord } from "./component/randomWord.js";
 import Clock from "./component/Clock.tsx";
-import SendResult from "./component/SendResult.tsx";
+import CompletedResult from "./component/CompletedResult.tsx";
+import FailedResult from "./component/FailedResult.tsx";
 
 function App() {
   const foodList = "Biffa Marcu Polle".split(" ");
@@ -141,7 +142,7 @@ function App() {
           ))}
         </div>
       </div>
-      {<div>{arrToString == "SOLEN" ? <SendResult /> : null}</div>}
+      {<div>{arrToString == "SOLEN" ? <CompletedResult /> : null}</div>}
 
       <div>
         <Keyboard />
