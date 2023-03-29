@@ -7,10 +7,9 @@ import { generateRandomWord } from "./component/randomWord.js";
 import Clock from "./component/Clock.tsx";
 import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
+import { words } from "./words/words.js";
 
 function App() {
-  const foodList = "Biffa Marcu Polle".split(" ");
-
   const boardStart = BoardStart(5);
 
   const [letterGuess, setLetterGuess] = useState("");
@@ -21,15 +20,18 @@ function App() {
   const [letterGuess6, setLetterGuess6] = useState("");
 
   let row = 0;
+
   //useMemo to not make randomword change everytime
-  const randomWord = useMemo(() => generateRandomWord(foodList, 5), []);
+  let randomWord = useMemo(() => generateRandomWord(words.split(" "), 5), []);
+  randomWord = randomWord.toUpperCase();
+
   let valueColor;
   let arrToString;
 
   function convertToString(word, index) {
     if (word.length === 5) {
       arrToString = word.toString().replace(/,/g, "");
-      valueColor = checkGuess(arrToString, "solen");
+      valueColor = checkGuess(arrToString, randomWord);
 
       if (valueColor[index] === "misplaced") {
         return "yellow-color";
@@ -56,14 +58,14 @@ function App() {
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
       <div className="border-b-4 pb-7">
-        <h1 className="text-7xl text-center mt-7">Wordle</h1>
+        <h1 className="text-7xl text-center mt-7">{randomWord}</h1>
       </div>
 
       <div>
         <Clock
           firstWord={letterGuess}
           guessWord={arrToString}
-          randomWord={"SOLEN"}
+          randomWord={randomWord}
           lastGuess={letterGuess6.length}
           boardStartLength={boardStart.length}
         />
@@ -146,10 +148,10 @@ function App() {
       </div>
       {
         <div>
-          {arrToString == "SOLEN" ? <CompletedResult /> : null}
+          {arrToString == randomWord ? <CompletedResult /> : null}
           {letterGuess6.length >= boardStart.length &&
-          arrToString != "SOLEN" ? (
-            <FailedResult randomWord={"SOLEN"} />
+          arrToString != randomWord ? (
+            <FailedResult randomWord={randomWord} />
           ) : null}
         </div>
       }
