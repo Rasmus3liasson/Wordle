@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { checkGuess } from "./checkGuess.js";
 
 export default function Board(props) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -12,7 +11,7 @@ export default function Board(props) {
       let arr = [...props.state];
 
       // when array contains 5 letters, then function will move to next row
-      if (arr.length === 5) {
+      if (arr.length === props.boardStartLength) {
         return;
       }
 
@@ -25,10 +24,10 @@ export default function Board(props) {
         return false;
       }
 
-      if (activeIndex < 4) {
+      if (activeIndex < props.boardStartLength) {
         setActiveIndex(activeIndex + 1);
       }
-      if (arr.length === 5) {
+      if (arr.length === props.boardStartLength) {
         arr = [];
       }
     }

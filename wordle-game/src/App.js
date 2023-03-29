@@ -27,13 +27,15 @@ function App() {
     () => generateRandomWord(words.split(" "), selectValue),
     []
   );
+
   randomWord = randomWord.toUpperCase();
 
   let valueColor;
   let arrToString;
-
+  console.log(randomWord);
+  console.log(selectValue);
   function convertToString(word, index) {
-    if (word.length === 5) {
+    if (word.length === boardStart.length) {
       arrToString = word.toString().replace(/,/g, "");
       valueColor = checkGuess(arrToString, randomWord);
 
@@ -55,7 +57,7 @@ function App() {
   convertToString(letterGuess5);
   convertToString(letterGuess6);
 
-  if (letterGuess.length === 5) {
+  if (letterGuess.length === boardStart.length) {
     row++;
   }
 
@@ -92,6 +94,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={letterGuess[index]}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>
@@ -105,6 +108,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={row === 1 ? letterGuess2[index] : ""}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>
@@ -117,6 +121,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={row === 1 ? letterGuess3[index] : ""}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>
@@ -129,6 +134,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={row === 1 ? letterGuess4[index] : ""}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>
@@ -141,6 +147,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={row === 1 ? letterGuess5[index] : ""}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>
@@ -153,6 +160,7 @@ function App() {
               letter={letter}
               key={index}
               letterWord={row === 1 ? letterGuess6[index] : ""}
+              boardStartLength={boardStart.length}
             />
           ))}
         </div>

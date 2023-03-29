@@ -24,7 +24,7 @@ export function generateRandomWord(
 
   //remove words that don't match the length of the word
   for (let i = 0; i < categoryArr.length; i++) {
-    if (categoryArr[i].length <= lengthOfWord) {
+    if (categoryArr[i].length == lengthOfWord) {
       randomWordArr.push(categoryArr[i]);
     }
   }
