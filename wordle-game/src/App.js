@@ -10,6 +10,7 @@ import FailedResult from "./component/FailedResult.tsx";
 import { words } from "./words/words.js";
 import ChooseLength from "./component/ChooseLength.tsx";
 import UniqueLetters from "./component/UniqueLetters.tsx";
+import Nav from "./component/Nav.tsx";
 
 function App() {
   const [selectValue, setSelectValue] = useState("5");
@@ -35,7 +36,7 @@ function App() {
   let valueColor;
   let arrToString;
 
-  function convertToString(word, index) {
+  function setColorBox(word, index) {
     if (word.length === boardStart.length) {
       arrToString = word.toString().replace(/,/g, "");
       valueColor = checkGuess(arrToString, randomWord);
@@ -51,12 +52,12 @@ function App() {
   }
 
   //calling function so arrToString value isn't undefined so Clock component hava acces to the variable
-  convertToString(letterGuess);
-  convertToString(letterGuess2);
-  convertToString(letterGuess3);
-  convertToString(letterGuess4);
-  convertToString(letterGuess5);
-  convertToString(letterGuess6);
+  setColorBox(letterGuess);
+  setColorBox(letterGuess2);
+  setColorBox(letterGuess3);
+  setColorBox(letterGuess4);
+  setColorBox(letterGuess5);
+  setColorBox(letterGuess6);
 
   if (letterGuess.length === boardStart.length) {
     row++;
@@ -66,6 +67,9 @@ function App() {
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
       <div className="border-b-4 pb-7">
         <h1 className="text-7xl text-center mt-7">Wordle</h1>
+        <div>
+          <Nav />
+        </div>
       </div>
 
       <div>
@@ -95,7 +99,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess, index)}
+              backgroundColor={setColorBox(letterGuess, index)}
               state={letterGuess}
               setState={setLetterGuess}
               letter={letter}
@@ -109,7 +113,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess2, index)}
+              backgroundColor={setColorBox(letterGuess2, index)}
               state={letterGuess2}
               setState={setLetterGuess2}
               letter={letter}
@@ -122,7 +126,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess3, index)}
+              backgroundColor={setColorBox(letterGuess3, index)}
               state={letterGuess3}
               setState={setLetterGuess3}
               letter={letter}
@@ -135,7 +139,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess4, index)}
+              backgroundColor={setColorBox(letterGuess4, index)}
               state={letterGuess4}
               setState={setLetterGuess4}
               letter={letter}
@@ -148,7 +152,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess5, index)}
+              backgroundColor={setColorBox(letterGuess5, index)}
               state={letterGuess5}
               setState={setLetterGuess5}
               letter={letter}
@@ -161,7 +165,7 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
-              backgroundColor={convertToString(letterGuess6, index)}
+              backgroundColor={setColorBox(letterGuess6, index)}
               state={letterGuess6}
               setState={setLetterGuess6}
               letter={letter}
