@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import Board from "./component/Board.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
@@ -7,13 +7,13 @@ import { generateRandomWord } from "./component/randomWord.js";
 import Clock from "./component/Clock.tsx";
 import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
-import { words } from "./words/words.js";
 import ChooseLength from "./component/ChooseLength.tsx";
 import UniqueLetters from "./component/UniqueLetters.tsx";
 import Nav from "./component/Nav.tsx";
 
 function App() {
   const [selectValue, setSelectValue] = useState("5");
+  const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
   const [letterGuess, setLetterGuess] = useState("");
   const [letterGuess2, setLetterGuess2] = useState("");
@@ -25,13 +25,23 @@ function App() {
   let row = 0;
   const boardStart = BoardStart(selectValue);
 
-  //useMemo to not make randomword change everytime
-  let randomWord = useMemo(
-    () => generateRandomWord(words.split(" "), selectValue, uniqueLetters),
-    []
-  );
+  async function getRandomWord() {
+    const res = await fetch("/words");
+    const data = await res.json();
+    const words = data.data.wordList;
+    const randomWord = generateRandomWord(
+      words.toUpperCase().split(" "),
+      selectValue,
+      uniqueLetters
+    );
 
-  randomWord = randomWord.toUpperCase();
+    setRandomWord(randomWord);
+    console.log(randomWord);
+  }
+
+  useEffect(() => {
+    getRandomWord();
+  }, []);
 
   let valueColor;
   let arrToString;
