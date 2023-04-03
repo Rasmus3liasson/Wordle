@@ -8,7 +8,7 @@ export default function Clock(props) {
   useEffect(() => {
     //stop timer
     if (
-      props.guessWord == props.randomWord ||
+      props.guessWord === props.randomWord ||
       props.lastGuess >= props.boardStartLength
     ) {
       return;
@@ -18,6 +18,10 @@ export default function Clock(props) {
     if (props.firstWord.length >= 1) {
       const intervalId = setInterval(() => {
         setSecond((second) => second + 1);
+        const newTime = `${hour.toString().padStart(2, "0")}:${minute
+          .toString()
+          .padStart(2, "0")}:${(second + 1).toString().padStart(2, "0")}`;
+        props.onTick(newTime); // call the callback function with the new time value
       }, 1000);
 
       // Clean up
@@ -35,10 +39,22 @@ export default function Clock(props) {
     setHour((hours) => hours + 1);
   }
 
+  // update the time state
+  useEffect(() => {
+    props.setTime(
+      `${hour.toString().padStart(2, "0")}:${minute
+        .toString()
+        .padStart(2, "0")}:${second.toString().padStart(2, "0")}`
+    );
+  }, [hour, minute, second]);
+
   return (
     <div>
-      {hour.toString().padStart(2, "0")}:{minute.toString().padStart(2, "0")}:
-      {second.toString().padStart(2, "0")}
+      <p>
+        {" "}
+        {hour.toString().padStart(2, "0")}:{minute.toString().padStart(2, "0")}:
+        {second.toString().padStart(2, "0")}
+      </p>
     </div>
   );
 }

@@ -15,6 +15,7 @@ function App() {
   const [selectValue, setSelectValue] = useState("5");
   const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
+  const [time, setTime] = useState("00:00:00");
   const [letterGuess, setLetterGuess] = useState("");
   const [letterGuess2, setLetterGuess2] = useState("");
   const [letterGuess3, setLetterGuess3] = useState("");
@@ -73,6 +74,10 @@ function App() {
     row++;
   }
 
+  const handleTick = (newTime) => {
+    setTime(newTime);
+  };
+
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
       <div className="border-b-4 pb-7">
@@ -97,6 +102,8 @@ function App() {
 
       <div>
         <Clock
+          setTime={setTime}
+          onTick={handleTick}
           firstWord={letterGuess}
           guessWord={arrToString}
           randomWord={randomWord}
@@ -200,7 +207,7 @@ function App() {
       </div>
       {
         <div>
-          {arrToString == randomWord ? <CompletedResult /> : null}
+          {arrToString == randomWord ? <CompletedResult time={time} /> : null}
           {letterGuess6.length >= boardStart.length &&
           arrToString != randomWord ? (
             <FailedResult randomWord={randomWord} />

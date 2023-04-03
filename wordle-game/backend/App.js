@@ -3,12 +3,14 @@ import express from "express";
 import fs from "fs";
 import { wordList } from "./wordsFolder/words.js";
 import fetch from "node-fetch";
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static("../build"));
 app.set("view engine", "ejs");
+app.use(cors());
 
 const HighScore = mongoose.model("highscoreData", {
   name: String,
@@ -45,6 +47,21 @@ app.get("/highscoredata", async (req, res) => {
 
   res.status(200).json({
     highscoreList: highscoreData,
+  });
+});
+
+app.post("/highscoredata", async (req, res) => {
+  const { name, time } = req.body;
+  const conn = await mongoose.connect(
+    "mongodb://127.0.0.1:27017/highscoreList"
+  );
+  const highscoreData = new HighScore({ name, time });
+  await highscoreData.save();
+  console.log(highscoreData);
+  conn.disconnect();
+
+  res.status(200).json({
+    message: "request went through",
   });
 });
 
