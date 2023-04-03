@@ -37,7 +37,6 @@ function App() {
     );
 
     setRandomWord(randomWord);
-    console.log(randomWord);
   }
 
   useEffect(() => {
@@ -74,7 +73,7 @@ function App() {
     row++;
   }
 
-  const handleTick = (newTime) => {
+  const handleTime = (newTime) => {
     setTime(newTime);
   };
 
@@ -103,7 +102,7 @@ function App() {
       <div>
         <Clock
           setTime={setTime}
-          onTick={handleTick}
+          handleTime={handleTime}
           firstWord={letterGuess}
           guessWord={arrToString}
           randomWord={randomWord}

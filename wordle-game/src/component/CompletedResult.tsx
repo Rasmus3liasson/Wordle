@@ -6,7 +6,7 @@ export default function CompletedResult(props) {
   function submit(event) {
     event.preventDefault();
 
-    if (nameValue != "") {
+    if (nameValue !== "") {
       const highscoreData = {
         name: nameValue,
         time: props.time,

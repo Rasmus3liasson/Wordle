@@ -30,10 +30,6 @@ export default function Board(props) {
     }
   }
 
-  /*   if (hej === props.randomWord) {
-    document.removeEventListener("keypress", handleKeyPress);
-  } */
-
   useEffect(() => {
     document.addEventListener("keypress", handleKeyPress);
     let hej = props.state.toString().replace(/,/g, "");

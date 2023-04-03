@@ -17,26 +17,6 @@ const HighScore = mongoose.model("highscoreData", {
   time: String,
 });
 
-/* async function runHighScore() {
-  const conn = await mongoose.connect(
-    "mongodb://127.0.0.1:27017/highscoreList"
-  );
-
-  const obj = new HighScore({
-    name: "Nicklas",
-    time: "02.58",
-  });
-
-  await obj.save();
-
-  const hej = await HighScore.find();
-  console.log(hej);
-
-  conn.disconnect();
-}
-
-runHighScore(); */
-
 app.get("/highscoredata", async (req, res) => {
   const conn = await mongoose.connect(
     "mongodb://127.0.0.1:27017/highscoreList"
@@ -57,7 +37,6 @@ app.post("/highscoredata", async (req, res) => {
   );
   const highscoreData = new HighScore({ name, time });
   await highscoreData.save();
-  console.log(highscoreData);
   conn.disconnect();
 
   res.status(200).json({
@@ -80,15 +59,9 @@ app.get("/highscore", async (req, res) => {
 });
 
 app.get("/information", (req, res) => {
-  fs.readFile("./information.html", "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(404).send("Couldn't read file");
-    } else {
-      res.send(data);
-    }
-  });
+  res.render("information");
 });
+
 app.get("/game", (req, res) => {
   fs.readFile("../build/index.html", "utf8", (err, data) => {
     if (err) {
@@ -99,6 +72,7 @@ app.get("/game", (req, res) => {
     }
   });
 });
+
 app.get("/words", async (req, res) => {
   res.status(200).json({
     data: {
