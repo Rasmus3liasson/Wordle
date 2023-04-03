@@ -109,6 +109,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess, index)}
               state={letterGuess}
               setState={setLetterGuess}
@@ -123,6 +125,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess2, index)}
               state={letterGuess2}
               setState={setLetterGuess2}
@@ -136,6 +140,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess3, index)}
               state={letterGuess3}
               setState={setLetterGuess3}
@@ -149,6 +155,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess4, index)}
               state={letterGuess4}
               setState={setLetterGuess4}
@@ -162,6 +170,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess5, index)}
               state={letterGuess5}
               setState={setLetterGuess5}
@@ -175,6 +185,8 @@ function App() {
         <div className="board-rows">
           {boardStart.map((letter, index) => (
             <Board
+              randomWord={randomWord}
+              colorArr={valueColor}
               backgroundColor={setColorBox(letterGuess6, index)}
               state={letterGuess6}
               setState={setLetterGuess6}

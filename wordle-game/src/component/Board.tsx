@@ -5,39 +5,47 @@ export default function Board(props) {
 
   let { backgroundColor } = props;
 
-  useEffect(() => {
-    function handleKeyPress(event) {
-      //new array to make letters stay
-      let arr = [...props.state];
+  function handleKeyPress(event) {
+    //new array to make letters stay
+    let arr = [...props.state];
 
-      // when array contains 5 letters, then function will move to next row
-      if (arr.length === props.boardStartLength) {
-        return;
-      }
-
-      arr[activeIndex] = event.key.toUpperCase();
-
-      //only allow letters and no enter key letters
-      if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
-        props.setState(arr);
-      } else {
-        return false;
-      }
-
-      if (activeIndex < props.boardStartLength) {
-        setActiveIndex(activeIndex + 1);
-      }
-      if (arr.length === props.boardStartLength) {
-        arr = [];
-      }
+    // when boardrow is filled, then function will move to next row
+    if (arr.length === props.boardStartLength) {
+      return;
     }
 
+    arr[activeIndex] = event.key.toUpperCase();
+
+    //only allow letters and no enter key letters
+    if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
+      props.setState(arr);
+    } else {
+      return false;
+    }
+    if (activeIndex < props.boardStartLength) {
+      setActiveIndex(activeIndex + 1);
+    }
+    if (arr.length === props.boardStartLength) {
+      arr = [];
+    }
+  }
+
+  /*   if (hej === props.randomWord) {
+    document.removeEventListener("keypress", handleKeyPress);
+  } */
+
+  useEffect(() => {
     document.addEventListener("keypress", handleKeyPress);
+    let hej = props.state.toString().replace(/,/g, "");
+    if (hej.length === 5 && hej === props.randomWord) {
+      document.removeEventListener("keypress", handleKeyPress);
+    }
 
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
   });
+
   return (
     <div
       id="background-color"

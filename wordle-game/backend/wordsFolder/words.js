@@ -6,4 +6,4 @@ const words5Letters = letters5.words.join(" ");
 const words6Letters = letters6.words.join(" ");
 const words7Letters = letters7.words.join(" ");
 
-export const wordsCopy = words5Letters + words6Letters + words7Letters;
+export const wordList = words5Letters + words6Letters + words7Letters;

@@ -4,8 +4,13 @@ export default function Nav() {
   return (
     <div>
       <ul>
-        <li>information</li>
-        <li>highscore list</li>
+        <a href="/information">
+          <li>information</li>
+        </a>
+
+        <a href="/highscore">
+          <li>highscore list</li>
+        </a>
       </ul>
     </div>
   );
