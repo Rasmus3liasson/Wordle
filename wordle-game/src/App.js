@@ -41,7 +41,7 @@ function App() {
 
   useEffect(() => {
     getRandomWord();
-  }, []);
+  }, [selectValue]);
 
   let valueColor;
   let arrToString;
