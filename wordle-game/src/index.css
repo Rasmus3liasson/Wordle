@@ -15,4 +15,7 @@
   .green-color {
     @apply bg-green;
   }
+  .red-color {
+    @apply bg-red;
+  }
 }

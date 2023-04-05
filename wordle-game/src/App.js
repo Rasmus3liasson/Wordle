@@ -12,7 +12,7 @@ import UniqueLetters from "./component/UniqueLetters.tsx";
 import Nav from "./component/Nav.tsx";
 
 function App() {
-  const [selectValue, setSelectValue] = useState("5");
+  const [selectValue, setSelectValue] = useState(5);
   const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
   const [time, setTime] = useState("00:00:00");
@@ -35,13 +35,18 @@ function App() {
       selectValue,
       uniqueLetters
     );
-
     setRandomWord(randomWord);
+    console.log(randomWord);
   }
 
+  //change randomword when game settings changes
   useEffect(() => {
     getRandomWord();
   }, [selectValue]);
+
+  useEffect(() => {
+    getRandomWord();
+  }, [uniqueLetters]);
 
   let valueColor;
   let arrToString;
@@ -56,7 +61,7 @@ function App() {
       } else if (valueColor[index] === "correct") {
         return "green-color";
       } else {
-        return "bg-dark";
+        return "red-color";
       }
     }
   }

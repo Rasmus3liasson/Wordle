@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 export default function Board(props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  let { backgroundColor } = props;
+  let backgroundColor = props.backgroundColor || "bg-dark";
 
   function handleKeyPress(event) {
     //new array to make letters stay
