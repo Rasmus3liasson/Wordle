@@ -31,10 +31,11 @@ export default function Board(props) {
   }
 
   useEffect(() => {
-    document.addEventListener("keypress", handleKeyPress);
-    let hej = props.state.toString().replace(/,/g, "");
-    if (hej.length === 5 && hej === props.randomWord) {
-      document.removeEventListener("keypress", handleKeyPress);
+    let guess = props.state.toString().replace(/,/g, "");
+    if (guess.length === 5 && guess === props.randomWord) {
+      console.log("hej");
+    } else {
+      document.addEventListener("keypress", handleKeyPress);
     }
 
     return () => {

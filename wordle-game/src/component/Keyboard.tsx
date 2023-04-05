@@ -24,27 +24,27 @@ export function Keyboard() {
   return (
     <div className="flex flex-col justify-center items-center mt-20">
       <div className="flex gap-1 mb-2">
-        {row1.map((keyLetter) => {
+        {row1.map((keyLetter, index) => {
           return (
-            <div className="key-caps">
+            <div className="key-caps" key={index}>
               <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
         })}
       </div>
       <div className="flex gap-1 mb-2">
-        {row2.map((keyLetter) => {
+        {row2.map((keyLetter, index) => {
           return (
-            <div className="key-caps">
+            <div className="key-caps" key={index}>
               <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
         })}
       </div>
       <div className="flex gap-1 mb-2">
-        {row3.map((keyLetter) => {
+        {row3.map((keyLetter, index) => {
           return (
-            <div className="key-caps">
+            <div className="key-caps" key={index}>
               <button className="text-white text-xl">{keyLetter}</button>
             </div>
           );
