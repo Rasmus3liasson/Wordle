@@ -17,7 +17,7 @@ const HighScore = mongoose.model("highscoreData", {
   time: String,
   guesses: Number,
   wordLength: Number,
-  uniqueLetters: Number,
+  excludeUniqueLetters: Boolean,
 });
 
 app.get("/highscoredata", async (req, res) => {
@@ -34,11 +34,17 @@ app.get("/highscoredata", async (req, res) => {
 });
 
 app.post("/highscoredata", async (req, res) => {
-  const { name, time } = req.body;
+  const { name, time, guesses, wordLength, excludeUniqueLetters } = req.body;
   const conn = await mongoose.connect(
     "mongodb://127.0.0.1:27017/highscoreList"
   );
-  const highscoreData = new HighScore({ name, time });
+  const highscoreData = new HighScore({
+    name,
+    time,
+    guesses,
+    wordLength,
+    excludeUniqueLetters,
+  });
   await highscoreData.save();
   conn.disconnect();
 

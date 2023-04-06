@@ -10,6 +10,9 @@ export default function CompletedResult(props) {
       const highscoreData = {
         name: nameValue,
         time: props.time,
+        guesses: props.guessCount,
+        wordLength: props.selectValue,
+        excludeUniqueLetters: props.uniqueLetters,
       };
 
       fetch("http://localhost:5080/highscoredata", {

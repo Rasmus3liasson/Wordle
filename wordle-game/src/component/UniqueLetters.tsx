@@ -11,7 +11,7 @@ export default function UniqueLetters(props) {
 
   return (
     <div>
-      <h4>Include same letters more than once</h4>
+      <h4>exclude same letters more than once</h4>
       <select value={props.uniqueLetters.toString()} onChange={uniqueLetters}>
         <option value="true">Yes</option>
         <option value="false">No</option>

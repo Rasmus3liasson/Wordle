@@ -230,7 +230,12 @@ function App() {
       {
         <div>
           {arrToString == randomWord ? (
-            <CompletedResult guessCount={numberGuess} time={time} />
+            <CompletedResult
+              uniqueLetters={uniqueLetters}
+              selectValue={selectValue}
+              guessCount={numberGuess}
+              time={time}
+            />
           ) : null}
           {letterGuess6.length >= boardStart.length &&
           arrToString != randomWord ? (
