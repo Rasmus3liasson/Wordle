@@ -12,6 +12,7 @@ import UniqueLetters from "./component/UniqueLetters.tsx";
 import Nav from "./component/Nav.tsx";
 
 function App() {
+  const [numberGuess, setNumberGuess] = useState(1);
   const [selectValue, setSelectValue] = useState(5);
   const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
@@ -35,8 +36,8 @@ function App() {
       selectValue,
       uniqueLetters
     );
-    setRandomWord(randomWord);
     console.log(randomWord);
+    setRandomWord(randomWord);
   }
 
   //change randomword when game settings changes
@@ -81,6 +82,11 @@ function App() {
   const handleTime = (newTime) => {
     setTime(newTime);
   };
+
+  //function to set value of how many guesses
+  function handleGuessCount(count) {
+    setNumberGuess(count);
+  }
 
   return (
     <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
@@ -129,6 +135,8 @@ function App() {
               key={index}
               letterWord={letterGuess[index]}
               boardStartLength={boardStart.length}
+              row={1}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
@@ -145,6 +153,8 @@ function App() {
               key={index}
               letterWord={row === 1 ? letterGuess2[index] : ""}
               boardStartLength={boardStart.length}
+              row={2}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
@@ -160,6 +170,8 @@ function App() {
               key={index}
               letterWord={row === 1 ? letterGuess3[index] : ""}
               boardStartLength={boardStart.length}
+              row={3}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
@@ -175,6 +187,8 @@ function App() {
               key={index}
               letterWord={row === 1 ? letterGuess4[index] : ""}
               boardStartLength={boardStart.length}
+              row={4}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
@@ -190,6 +204,8 @@ function App() {
               key={index}
               letterWord={row === 1 ? letterGuess5[index] : ""}
               boardStartLength={boardStart.length}
+              row={5}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
@@ -205,13 +221,17 @@ function App() {
               key={index}
               letterWord={row === 1 ? letterGuess6[index] : ""}
               boardStartLength={boardStart.length}
+              row={6}
+              handleGuessCount={handleGuessCount}
             />
           ))}
         </div>
       </div>
       {
         <div>
-          {arrToString == randomWord ? <CompletedResult time={time} /> : null}
+          {arrToString == randomWord ? (
+            <CompletedResult guessCount={numberGuess} time={time} />
+          ) : null}
           {letterGuess6.length >= boardStart.length &&
           arrToString != randomWord ? (
             <FailedResult randomWord={randomWord} />

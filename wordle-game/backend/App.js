@@ -15,6 +15,9 @@ app.use(cors());
 const HighScore = mongoose.model("highscoreData", {
   name: String,
   time: String,
+  guesses: Number,
+  wordLength: Number,
+  uniqueLetters: Number,
 });
 
 app.get("/highscoredata", async (req, res) => {

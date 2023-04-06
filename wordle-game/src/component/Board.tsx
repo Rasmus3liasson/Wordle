@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CompletedResult from "./CompletedResult.tsx";
 
 export default function Board(props) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,6 +14,10 @@ export default function Board(props) {
     if (arr.length === props.boardStartLength) {
       return;
     }
+
+    //passing row number to function that set new value to guess
+    const guessCount = props.row;
+    props.handleGuessCount(guessCount);
 
     arr[activeIndex] = event.key.toUpperCase();
 
@@ -33,7 +38,7 @@ export default function Board(props) {
   useEffect(() => {
     let guess = props.state.toString().replace(/,/g, "");
     if (guess.length === 5 && guess === props.randomWord) {
-      console.log("hej");
+      document.removeEventListener("keypress", handleKeyPress);
     } else {
       document.addEventListener("keypress", handleKeyPress);
     }
