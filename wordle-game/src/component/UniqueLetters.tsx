@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function UniqueLetters(props) {
+interface Props {
+  uniqueLetters: boolean;
+  setUniqueLetters: (value: boolean) => void;
+}
+
+export default function UniqueLetters(props: Props) {
   function uniqueLetters(event) {
     if (event.target.value === "true") {
       props.setUniqueLetters(true);

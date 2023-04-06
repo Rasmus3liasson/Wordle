@@ -1,6 +1,10 @@
 import React from "react";
 
-export default function FailedResult(props) {
+interface Props {
+  randomWord: string;
+}
+
+export default function FailedResult(props: Props) {
   return (
     <div>
       <h4>Ordet vi var ute efter var {props.randomWord}</h4>

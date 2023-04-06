@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function ChooseLength(props) {
+interface Props {
+  selectValue: number;
+  setSelectValue: (value: number) => void;
+}
+
+export default function ChooseLength(props: Props) {
   function newSelectValue(event) {
     props.setSelectValue(event.target.value);
   }

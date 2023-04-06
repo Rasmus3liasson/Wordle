@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-export default function Clock(props) {
+interface Props {
+  guessWord: string;
+  randomWord: string;
+  lastGuess: number;
+  boardStartLength: number;
+  firstWord: string;
+  handleTime: (time: string) => void;
+  setTime: (time: string) => void;
+}
+
+export default function Clock(props: Props) {
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);

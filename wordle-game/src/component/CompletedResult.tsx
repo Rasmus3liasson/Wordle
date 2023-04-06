@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 
-export default function CompletedResult(props) {
+interface Props {
+  time: number;
+  guessCount: number;
+  selectValue: number;
+  uniqueLetters: boolean;
+}
+
+export default function CompletedResult(props: Props) {
   const [nameValue, setNameValue] = useState("");
 
   function submit(event) {

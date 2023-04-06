@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
-import CompletedResult from "./CompletedResult.tsx";
 
-export default function Board(props) {
+interface Props {
+  backgroundColor: string;
+  boardStartLength: number;
+  row: number;
+  letterWord: string;
+  state: string[];
+  randomWord: string;
+  handleGuessCount: (number: number) => void;
+  setState: (letters: string[]) => void;
+}
+
+export default function Board(props: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   let backgroundColor = props.backgroundColor || "bg-dark";
