@@ -7,7 +7,12 @@ interface Props {
   uniqueLetters: boolean;
 }
 
-export default function CompletedResult(props: Props) {
+export default function CompletedResult({
+  time,
+  guessCount,
+  selectValue,
+  uniqueLetters,
+}: Props) {
   const [nameValue, setNameValue] = useState("");
 
   function submit(event) {
@@ -16,13 +21,13 @@ export default function CompletedResult(props: Props) {
     if (nameValue !== "") {
       const highscoreData = {
         name: nameValue,
-        time: props.time,
-        guesses: props.guessCount,
-        wordLength: props.selectValue,
-        excludeUniqueLetters: props.uniqueLetters,
+        time: time,
+        guesses: guessCount,
+        wordLength: selectValue,
+        excludeUniqueLetters: uniqueLetters,
       };
 
-      fetch("http://localhost:5080/highscoredata", {
+      fetch("http://localhost:5080/api/highscoredata", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(highscoreData),

@@ -10,28 +10,33 @@ interface Props {
   setTime: (time: string) => void;
 }
 
-export default function Clock(props: Props) {
+export default function Clock({
+  guessWord,
+  randomWord,
+  lastGuess,
+  boardStartLength,
+  firstWord,
+  handleTime,
+  setTime,
+}: Props) {
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
     //stop timer
-    if (
-      props.guessWord === props.randomWord ||
-      props.lastGuess >= props.boardStartLength
-    ) {
+    if (guessWord === randomWord || lastGuess >= boardStartLength) {
       return;
     }
 
     //start when letter has been entered
-    if (props.firstWord.length >= 1) {
+    if (firstWord.length >= 1) {
       const intervalId = setInterval(() => {
         setSecond((second) => second + 1);
         const newTime = `${hour.toString().padStart(2, "0")}:${minute
           .toString()
           .padStart(2, "0")}:${(second + 1).toString().padStart(2, "0")}`;
-        props.handleTime(newTime);
+        handleTime(newTime);
       }, 1000);
 
       // Clean up
@@ -51,7 +56,7 @@ export default function Clock(props: Props) {
 
   // update the time state
   useEffect(() => {
-    props.setTime(
+    setTime(
       `${hour.toString().padStart(2, "0")}:${minute
         .toString()
         .padStart(2, "0")}:${second.toString().padStart(2, "0")}`

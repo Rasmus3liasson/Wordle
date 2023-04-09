@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Board from "./component/Board.tsx";
+import React, { useState, useEffect, Fragment } from "react";
+import BoardRow from "./component/BoardRow.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./functions/checkGuess.ts";
@@ -97,20 +97,15 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <Fragment>
         <ChooseLength
           selectValue={selectValue}
           setSelectValue={setSelectValue}
         />
-      </div>
-      <div>
         <UniqueLetters
           uniqueLetters={uniqueLetters}
           setUniqueLetters={setUniqueLetters}
         />
-      </div>
-
-      <div>
         <Clock
           setTime={setTime}
           handleTime={handleTime}
@@ -120,116 +115,106 @@ function App() {
           lastGuess={letterGuess6.length}
           boardStartLength={boardStart.length}
         />
-      </div>
+      </Fragment>
 
       <div className="mt-12">
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess, index)}
-              state={letterGuess}
-              setState={setLetterGuess}
-              letter={letter}
-              key={index}
-              letterWord={letterGuess[index]}
-              boardStartLength={boardStart.length}
-              row={1}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess2, index)}
-              state={letterGuess2}
-              setState={setLetterGuess2}
-              letter={letter}
-              key={index}
-              letterWord={row === 1 ? letterGuess2[index] : ""}
-              boardStartLength={boardStart.length}
-              row={2}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess3, index)}
-              state={letterGuess3}
-              setState={setLetterGuess3}
-              letter={letter}
-              key={index}
-              letterWord={row === 1 ? letterGuess3[index] : ""}
-              boardStartLength={boardStart.length}
-              row={3}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess4, index)}
-              state={letterGuess4}
-              setState={setLetterGuess4}
-              letter={letter}
-              key={index}
-              letterWord={row === 1 ? letterGuess4[index] : ""}
-              boardStartLength={boardStart.length}
-              row={4}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess5, index)}
-              state={letterGuess5}
-              setState={setLetterGuess5}
-              letter={letter}
-              key={index}
-              letterWord={row === 1 ? letterGuess5[index] : ""}
-              boardStartLength={boardStart.length}
-              row={5}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <Board
-              randomWord={randomWord}
-              colorArr={valueColor}
-              backgroundColor={setColorBox(letterGuess6, index)}
-              state={letterGuess6}
-              setState={setLetterGuess6}
-              letter={letter}
-              key={index}
-              letterWord={row === 1 ? letterGuess6[index] : ""}
-              boardStartLength={boardStart.length}
-              row={6}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
+        <Fragment>
+          {" "}
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess, index)}
+                state={letterGuess}
+                setState={setLetterGuess}
+                key={index}
+                letterWord={letterGuess[index]}
+                boardStartLength={boardStart.length}
+                row={1}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess2, index)}
+                state={letterGuess2}
+                setState={setLetterGuess2}
+                key={index}
+                letterWord={row === 1 ? letterGuess2[index] : ""}
+                boardStartLength={boardStart.length}
+                row={2}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess3, index)}
+                state={letterGuess3}
+                setState={setLetterGuess3}
+                key={index}
+                letterWord={row === 1 ? letterGuess3[index] : ""}
+                boardStartLength={boardStart.length}
+                row={3}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess4, index)}
+                state={letterGuess4}
+                setState={setLetterGuess4}
+                key={index}
+                letterWord={row === 1 ? letterGuess4[index] : ""}
+                boardStartLength={boardStart.length}
+                row={4}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess5, index)}
+                state={letterGuess5}
+                setState={setLetterGuess5}
+                key={index}
+                letterWord={row === 1 ? letterGuess5[index] : ""}
+                boardStartLength={boardStart.length}
+                row={5}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+          <div className="board-rows">
+            {boardStart.map((letter, index) => (
+              <BoardRow
+                randomWord={randomWord}
+                backgroundColor={setColorBox(letterGuess6, index)}
+                state={letterGuess6}
+                setState={setLetterGuess6}
+                key={index}
+                letterWord={row === 1 ? letterGuess6[index] : ""}
+                boardStartLength={boardStart.length}
+                row={6}
+                handleGuessCount={handleGuessCount}
+              />
+            ))}
+          </div>
+        </Fragment>
       </div>
       {
         <div>
-          {arrToString == randomWord ? (
+          {arrToString === randomWord ? (
             <CompletedResult
               uniqueLetters={uniqueLetters}
               selectValue={selectValue}
@@ -238,15 +223,15 @@ function App() {
             />
           ) : null}
           {letterGuess6.length >= boardStart.length &&
-          arrToString != randomWord ? (
+          arrToString !== randomWord ? (
             <FailedResult randomWord={randomWord} />
           ) : null}
         </div>
       }
 
-      <div>
+      <Fragment>
         <Keyboard />
-      </div>
+      </Fragment>
     </div>
   );
 }

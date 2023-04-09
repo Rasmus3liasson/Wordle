@@ -5,13 +5,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon App.js",
-    "start": "node App.js"
+    "dev": "nodemon --experimental-modules App.js",
+    "start": "node --experimental-modules App.js"
   },
   "author": "Rasmus Eliasson",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "mongoose": "^7.0.3",

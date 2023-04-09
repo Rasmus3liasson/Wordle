@@ -4,6 +4,8 @@ import fs from "fs";
 import { wordList } from "./wordsFolder/words.js";
 import fetch from "node-fetch";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
@@ -11,6 +13,10 @@ app.use(express.json());
 app.use(express.static("../build"));
 app.set("view engine", "ejs");
 app.use(cors());
+
+/*  const conn = await mongoose.connect(
+    "mongodb://127.0.0.1:27017/highscoreList"
+  ); */
 
 const HighScore = mongoose.model("highscoreData", {
   name: String,
@@ -20,10 +26,8 @@ const HighScore = mongoose.model("highscoreData", {
   excludeUniqueLetters: Boolean,
 });
 
-app.get("/highscoredata", async (req, res) => {
-  const conn = await mongoose.connect(
-    "mongodb://127.0.0.1:27017/highscoreList"
-  );
+app.get("/api/highscoredata", async (req, res) => {
+  const conn = await mongoose.connect(process.env.HighscoreDatabas);
   const highscoreData = await HighScore.find();
   console.log(highscoreData);
   conn.disconnect();
@@ -33,11 +37,11 @@ app.get("/highscoredata", async (req, res) => {
   });
 });
 
-app.post("/highscoredata", async (req, res) => {
+app.post("/api/highscoredata", async (req, res) => {
+  const conn = await mongoose.connect(process.env.HighscoreDatabas);
+
   const { name, time, guesses, wordLength, excludeUniqueLetters } = req.body;
-  const conn = await mongoose.connect(
-    "mongodb://127.0.0.1:27017/highscoreList"
-  );
+
   const highscoreData = new HighScore({
     name,
     time,
@@ -54,16 +58,20 @@ app.post("/highscoredata", async (req, res) => {
 });
 
 app.get("/highscore", async (req, res) => {
-  const highscoreRes = await fetch("http://localhost:5080/highscoredata");
+  const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = await highscoreRes.json();
-  const list = data.highscoreList;
-
+  const highscoreDetails = data.highscoreList;
+  /* 
   const personInfo = list
-    .map((score) => `${score.name} ${score.time}`)
-    .join(" ");
+    .map(
+      (score) =>
+        `${score.name} ${score.time} ${score.guesses}${score.wordLength}${score.excludeUniqueLetters}`
+    )
+    .join(" "); */
 
   res.render("highscore", {
-    body: personInfo,
+    highscoreDetails,
+    /* body: personInfo, */
   });
 });
 

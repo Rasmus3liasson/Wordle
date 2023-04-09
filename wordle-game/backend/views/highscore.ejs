@@ -7,6 +7,14 @@
     <title>Wordle</title>
   </head>
   <body>
-    <div><%-body%></div>
+    <% highscoreDetails.forEach((score) => { %>
+    <div>
+      <p>Name: <%= score.name %></p>
+      <p>Time: <%= score.time %></p>
+      <p>Guesses: <%= score.guesses %></p>
+      <p>Word Length: <%= score.wordLength %></p>
+      <p>Exclude Unique Letters: <%= score.excludeUniqueLetters %></p>
+    </div>
+    <% }); %>
   </body>
 </html>
