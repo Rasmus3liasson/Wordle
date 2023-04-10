@@ -14,10 +14,6 @@ app.use(express.static("../build"));
 app.set("view engine", "ejs");
 app.use(cors());
 
-/*  const conn = await mongoose.connect(
-    "mongodb://127.0.0.1:27017/highscoreList"
-  ); */
-
 const HighScore = mongoose.model("highscoreData", {
   name: String,
   time: String,
@@ -28,6 +24,7 @@ const HighScore = mongoose.model("highscoreData", {
 
 app.get("/api/highscoredata", async (req, res) => {
   const conn = await mongoose.connect(process.env.HighscoreDatabas);
+  //sort by fastest time
   const highscoreData = await HighScore.find().sort({ time: 1 });
   console.log(highscoreData);
   conn.disconnect();
@@ -57,7 +54,7 @@ app.post("/api/highscoredata", async (req, res) => {
   });
 });
 
-/* app.get("/highscore", async (req, res) => {
+app.get("/highscore", async (req, res) => {
   const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = await highscoreRes.json();
   const highscoreDetails = data.highscoreList;
@@ -65,33 +62,55 @@ app.post("/api/highscoredata", async (req, res) => {
   res.render("highscore", {
     highscoreDetails,
   });
-}); */
+});
 
-app.get("/highscore/:wordLength", async (req, res) => {
-  const wordLength = parseInt(req.params.wordLength);
+app.get("/highscore/:wordlength", async (req, res) => {
+  const wordLength = parseInt(req.params.wordlength);
   const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = await highscoreRes.json();
-  const highscoreDetails = data.highscoreList;
+  let highscoreDetails = data.highscoreList;
 
-  const filteredHighscores = highscoreDetails.filter(
+  highscoreDetails = highscoreDetails.filter(
     (length) => length.wordLength === wordLength
+  );
+  console.log(highscoreDetails);
+  res.render("highscore", {
+    highscoreDetails,
+  });
+});
+app.get("/highscore/:wordlength/:guesses", async (req, res) => {
+  const wordLength = parseInt(req.params.wordlength);
+  const guesses = parseInt(req.params.guesses);
+  const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
+  const data = await highscoreRes.json();
+  let highscoreDetails = data.highscoreList;
+
+  highscoreDetails = highscoreDetails.filter(
+    (filter) => filter.wordLength === wordLength && filter.guesses === guesses
   );
 
   res.render("highscore", {
-    filteredHighscores,
+    highscoreDetails,
   });
 });
 
-app.get("/highscore", async (req, res) => {
-  const wordLength = parseInt(req.params.wordLength);
-
+app.get("/highscore/:wordlength/:guesses/:excludeLetters", async (req, res) => {
+  const wordLength = parseInt(req.params.wordlength);
+  const guesses = parseInt(req.params.guesses);
+  const excludeLetters = req.params.excludeLetters === "true";
   const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = await highscoreRes.json();
-  const highscoreDetails = data.highscoreList;
-  const filteredHighscores = highscoreDetails;
+  let highscoreDetails = data.highscoreList;
+
+  highscoreDetails = highscoreDetails.filter(
+    (filter) =>
+      filter.wordLength === wordLength &&
+      filter.guesses === guesses &&
+      filter.excludeUniqueLetters === excludeLetters
+  );
 
   res.render("highscore", {
-    filteredHighscores,
+    highscoreDetails,
   });
 });
 
