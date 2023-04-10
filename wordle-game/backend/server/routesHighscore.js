@@ -18,15 +18,12 @@ highscoreRoute.get("/", async (req, res) => {
   }
   if (guesses) {
     highscoreDetails = highscoreDetails.filter(
-      (filter) => filter.wordLength === wordLength && filter.guesses === guesses
+      (filter) => filter.guesses === guesses
     );
   }
   if (excludeLetters) {
     highscoreDetails = highscoreDetails.filter(
-      (filter) =>
-        filter.wordLength === wordLength &&
-        filter.guesses === guesses &&
-        filter.excludeUniqueLetters === excludeLetters
+      (filter) => filter.excludeUniqueLetters === excludeLetters
     );
   }
 
