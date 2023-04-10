@@ -28,7 +28,7 @@ const HighScore = mongoose.model("highscoreData", {
 
 app.get("/api/highscoredata", async (req, res) => {
   const conn = await mongoose.connect(process.env.HighscoreDatabas);
-  const highscoreData = await HighScore.find();
+  const highscoreData = await HighScore.find().sort({ time: 1 });
   console.log(highscoreData);
   conn.disconnect();
 
@@ -90,7 +90,7 @@ app.get("/game", (req, res) => {
   });
 });
 
-app.get("/words", async (req, res) => {
+app.get("/api/words", async (req, res) => {
   res.status(200).json({
     data: {
       wordList: wordList,

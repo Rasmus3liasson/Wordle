@@ -7,7 +7,8 @@
     <title>Wordle</title>
   </head>
   <body>
-    <% highscoreDetails.forEach((score) => { %>
+    <%-include("./partials/header")%> <% highscoreDetails.forEach((score) => {
+    %>
     <div>
       <p>Name: <%= score.name %></p>
       <p>Time: <%= score.time %></p>

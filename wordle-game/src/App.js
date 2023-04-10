@@ -13,7 +13,7 @@ import Nav from "./component/Nav.tsx";
 
 function App() {
   const [numberGuess, setNumberGuess] = useState(1);
-  const [selectValue, setSelectValue] = useState(5);
+  const [selectValue, setSelectValue] = useState(7);
   const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
   const [time, setTime] = useState("00:00:00");
@@ -28,7 +28,7 @@ function App() {
   const boardStart = BoardStart(selectValue);
 
   async function getRandomWord() {
-    const res = await fetch("/words");
+    const res = await fetch("/api/words");
     const data = await res.json();
     const words = data.data.wordList;
     const randomWord = generateRandomWord(
@@ -36,7 +36,6 @@ function App() {
       selectValue,
       uniqueLetters
     );
-    console.log(randomWord);
     setRandomWord(randomWord);
   }
 
