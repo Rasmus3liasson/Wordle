@@ -3,14 +3,14 @@ import React, { useState } from "react";
 interface Props {
   time: number;
   guessCount: number;
-  selectValue: number;
+  selectLength: number;
   uniqueLetters: boolean;
 }
 
 export default function CompletedResult({
   time,
   guessCount,
-  selectValue,
+  selectLength,
   uniqueLetters,
 }: Props) {
   const [nameValue, setNameValue] = useState("");
@@ -25,7 +25,7 @@ export default function CompletedResult({
         name: nameValue,
         time: time,
         guesses: guessCount,
-        wordLength: selectValue,
+        wordLength: selectLength,
         excludeUniqueLetters: uniqueLetters,
       };
 

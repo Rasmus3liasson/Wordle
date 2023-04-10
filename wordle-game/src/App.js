@@ -13,7 +13,7 @@ import Nav from "./component/Nav.tsx";
 
 function App() {
   const [numberGuess, setNumberGuess] = useState(1);
-  const [selectValue, setSelectValue] = useState(5);
+  const [selectLength, setSelectLength] = useState(5);
   const [randomWord, setRandomWord] = useState("");
   const [uniqueLetters, setUniqueLetters] = useState(true);
   const [time, setTime] = useState("00:00:00");
@@ -25,7 +25,7 @@ function App() {
   const [letterGuess6, setLetterGuess6] = useState("");
 
   let row = 0;
-  const boardStart = BoardStart(selectValue);
+  const boardStart = BoardStart(selectLength);
 
   async function getRandomWord() {
     const res = await fetch("/api/words");
@@ -33,7 +33,7 @@ function App() {
     const words = data.data.wordList;
     const randomWord = generateRandomWord(
       words.toUpperCase().split(" "),
-      selectValue,
+      selectLength,
       uniqueLetters
     );
     setRandomWord(randomWord);
@@ -43,11 +43,7 @@ function App() {
   //change randomword with game settings changes
   useEffect(() => {
     getRandomWord();
-  }, [selectValue]);
-
-  useEffect(() => {
-    getRandomWord();
-  }, [uniqueLetters]);
+  }, [selectLength, uniqueLetters]);
 
   let valueColor;
   let arrToString;
@@ -99,8 +95,8 @@ function App() {
 
       <Fragment>
         <ChooseLength
-          selectValue={selectValue}
-          setSelectValue={setSelectValue}
+          selectLength={selectLength}
+          setSelectLength={setSelectLength}
         />
         <UniqueLetters
           uniqueLetters={uniqueLetters}
@@ -215,7 +211,7 @@ function App() {
           {arrToString === randomWord ? (
             <CompletedResult
               uniqueLetters={uniqueLetters}
-              selectValue={selectValue}
+              selectLength={selectLength}
               guessCount={numberGuess}
               time={time}
             />
