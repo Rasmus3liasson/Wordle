@@ -36,6 +36,7 @@ function App() {
       selectValue,
       uniqueLetters
     );
+    console.log(randomWord);
     setRandomWord(randomWord);
   }
 
