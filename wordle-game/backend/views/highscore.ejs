@@ -7,7 +7,7 @@
     <title>Wordle</title>
   </head>
   <body>
-    <%-include("./partials/header")%> <% highscoreDetails.forEach((score) => {
+    <%-include("./partials/header")%> <% filteredHighscores.forEach((score) => {
     %>
     <div>
       <p>Name: <%= score.name %></p>
@@ -17,5 +17,6 @@
       <p>Exclude Unique Letters: <%= score.excludeUniqueLetters %></p>
     </div>
     <% }); %>
+    <a href="/highscore"><button>Se alla highscores</button></a>
   </body>
 </html>

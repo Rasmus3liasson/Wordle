@@ -14,6 +14,8 @@ export default function CompletedResult({
   uniqueLetters,
 }: Props) {
   const [nameValue, setNameValue] = useState("");
+  const [nameText, setNameText] = useState("Fyll i ditt namn");
+  const [sendHighscore, setSendHighscore] = useState(false);
 
   function submit(event) {
     event.preventDefault();
@@ -32,6 +34,10 @@ export default function CompletedResult({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(highscoreData),
       });
+
+      setSendHighscore(true);
+    } else {
+      setNameText("Du måste ange ett namn");
     }
   }
   function setValueInput(event) {
@@ -40,14 +46,18 @@ export default function CompletedResult({
 
   return (
     <div className="text-center mt-6">
-      <h3>Grattis</h3>
-      <div className="flex flex-col justify-center">
-        <form action="" onSubmit={submit}>
-          <label aria-label="Fyll i ditt namn">Fyll i ditt namn</label>
-          <input onChange={setValueInput} id="name-input" type="text" />
-          <button type="submit">Lämna in</button>
-        </form>
-      </div>
+      {sendHighscore ? (
+        <p>Tack för inlämningen!</p>
+      ) : (
+        <div className="flex flex-col justify-center">
+          <form action="" onSubmit={submit}>
+            <label aria-label="Fyll i ditt namn">{nameText}</label>
+            <input onChange={setValueInput} id="name-input" type="text" />
+
+            <button type="submit">Lämna in</button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }
