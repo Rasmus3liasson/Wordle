@@ -18,9 +18,13 @@ export default function UniqueLetters({
   }
 
   return (
-    <div>
-      <h4>exclude same letters more than once</h4>
-      <select value={uniqueLetters.toString()} onChange={changeUniqueLetters}>
+    <div className="flex flex-col items-center mt-5">
+      <h4 className="text-xl">exclude same letters more than once</h4>
+      <select
+        className="select"
+        value={uniqueLetters.toString()}
+        onChange={changeUniqueLetters}
+      >
         <option value="true">Yes</option>
         <option value="false">No</option>
       </select>

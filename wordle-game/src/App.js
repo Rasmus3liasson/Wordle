@@ -23,6 +23,7 @@ function App() {
   const [letterGuess4, setLetterGuess4] = useState("");
   const [letterGuess5, setLetterGuess5] = useState("");
   const [letterGuess6, setLetterGuess6] = useState("");
+  const [modal, setModal] = useState(true);
 
   let row = 0;
   const boardStart = BoardStart(selectLength);
@@ -85,127 +86,160 @@ function App() {
   }
 
   return (
-    <div className="App font-montserrat h-full p-0 box-border scroll-smooth">
+    <div className="App font-montserrat h-full p-0 box-border scroll-smooth bg-dark text-white">
       <div className="border-b-4 pb-7">
-        <h1 className="text-7xl text-center mt-7">Wordle</h1>
+        <h1 className="text-7xl text-center pt-7">Wordle</h1>
         <div>
           <Nav />
         </div>
       </div>
 
-      <Fragment>
-        <ChooseLength
-          selectLength={selectLength}
-          setSelectLength={setSelectLength}
-        />
-        <UniqueLetters
-          uniqueLetters={uniqueLetters}
-          setUniqueLetters={setUniqueLetters}
-        />
-        <Clock
-          setTime={setTime}
-          handleTime={handleTime}
-          firstWord={letterGuess}
-          guessWord={arrToString}
-          randomWord={randomWord}
-          lastGuess={letterGuess6.length}
-          boardStartLength={boardStart.length}
-        />
-      </Fragment>
+      {modal && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
+            <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
 
-      <div className="mt-12">
-        {" "}
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
-              randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess, index)}
-              state={letterGuess}
-              setState={setLetterGuess}
-              key={index}
-              letterWord={letterGuess[index]}
-              boardStartLength={boardStart.length}
-              row={1}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
+            <div className=" flex justify-center shadow-xl transform transition-all ">
+              <div className="bg-dark px-4 pt-5 pb-4 rounded-lg">
+                <h3 className="text-xl text-center">Dina inställningar</h3>
+                <div>
+                  <Fragment>
+                    <ChooseLength
+                      selectLength={selectLength}
+                      setSelectLength={setSelectLength}
+                    />
+                    <UniqueLetters
+                      uniqueLetters={uniqueLetters}
+                      setUniqueLetters={setUniqueLetters}
+                    />
+                  </Fragment>
+                </div>
+                <div className="flex justify-center">
+                  <button
+                    onClick={() => {
+                      setModal(false);
+                    }}
+                    className="border-2 border-white p-3 rounded-full mt-9 hover:bg-white hover:text-dark duration-200 ease-in hover:border-dark active:scale-105"
+                  >
+                    Starta Spelet
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
+      )}
+      {!modal && (
+        <div>
+          <div>
+            <Clock
+              setTime={setTime}
+              handleTime={handleTime}
+              firstWord={letterGuess}
+              guessWord={arrToString}
               randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess2, index)}
-              state={letterGuess2}
-              setState={setLetterGuess2}
-              key={index}
-              letterWord={row === 1 ? letterGuess2[index] : ""}
+              lastGuess={letterGuess6.length}
               boardStartLength={boardStart.length}
-              row={2}
-              handleGuessCount={handleGuessCount}
             />
-          ))}
+          </div>
+          <div className="mt-12">
+            {" "}
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess, index)}
+                  state={letterGuess}
+                  setState={setLetterGuess}
+                  key={index}
+                  letterWord={letterGuess[index]}
+                  boardStartLength={boardStart.length}
+                  row={1}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess2, index)}
+                  state={letterGuess2}
+                  setState={setLetterGuess2}
+                  key={index}
+                  letterWord={row === 1 ? letterGuess2[index] : ""}
+                  boardStartLength={boardStart.length}
+                  row={2}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess3, index)}
+                  state={letterGuess3}
+                  setState={setLetterGuess3}
+                  key={index}
+                  letterWord={row === 1 ? letterGuess3[index] : ""}
+                  boardStartLength={boardStart.length}
+                  row={3}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess4, index)}
+                  state={letterGuess4}
+                  setState={setLetterGuess4}
+                  key={index}
+                  letterWord={row === 1 ? letterGuess4[index] : ""}
+                  boardStartLength={boardStart.length}
+                  row={4}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess5, index)}
+                  state={letterGuess5}
+                  setState={setLetterGuess5}
+                  key={index}
+                  letterWord={row === 1 ? letterGuess5[index] : ""}
+                  boardStartLength={boardStart.length}
+                  row={5}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+            <div className="board-rows">
+              {boardStart.map((letter, index) => (
+                <BoardRow
+                  randomWord={randomWord}
+                  backgroundColor={setColorBox(letterGuess6, index)}
+                  state={letterGuess6}
+                  setState={setLetterGuess6}
+                  key={index}
+                  letterWord={row === 1 ? letterGuess6[index] : ""}
+                  boardStartLength={boardStart.length}
+                  row={6}
+                  handleGuessCount={handleGuessCount}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
-              randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess3, index)}
-              state={letterGuess3}
-              setState={setLetterGuess3}
-              key={index}
-              letterWord={row === 1 ? letterGuess3[index] : ""}
-              boardStartLength={boardStart.length}
-              row={3}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
-              randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess4, index)}
-              state={letterGuess4}
-              setState={setLetterGuess4}
-              key={index}
-              letterWord={row === 1 ? letterGuess4[index] : ""}
-              boardStartLength={boardStart.length}
-              row={4}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
-              randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess5, index)}
-              state={letterGuess5}
-              setState={setLetterGuess5}
-              key={index}
-              letterWord={row === 1 ? letterGuess5[index] : ""}
-              boardStartLength={boardStart.length}
-              row={5}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-        <div className="board-rows">
-          {boardStart.map((letter, index) => (
-            <BoardRow
-              randomWord={randomWord}
-              backgroundColor={setColorBox(letterGuess6, index)}
-              state={letterGuess6}
-              setState={setLetterGuess6}
-              key={index}
-              letterWord={row === 1 ? letterGuess6[index] : ""}
-              boardStartLength={boardStart.length}
-              row={6}
-              handleGuessCount={handleGuessCount}
-            />
-          ))}
-        </div>
-      </div>
+      )}
+
       {
         <div>
           {arrToString === randomWord ? (

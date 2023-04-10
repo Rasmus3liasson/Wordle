@@ -10,6 +10,7 @@ module.exports = {
         green: "#1CCC10",
         red: "#a83232",
         white: "#F0EAE4",
+        links: "#FEF9F9",
       },
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
@@ -17,6 +18,9 @@ module.exports = {
       boxShadow: {
         box: "0 10px 15px rgba(0, 0, 0, 0.3)",
         img: "2px 10px 14px 0px rgba(38,37,37,0.75)",
+      },
+      scale: {
+        103: "1.03",
       },
     },
   },

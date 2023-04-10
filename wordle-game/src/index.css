@@ -18,4 +18,10 @@
   .red-color {
     @apply bg-red;
   }
+  .select {
+    @apply text-dark py-1 rounded-lg text-xl px-2 mt-1;
+  }
+  .links {
+    @apply hover:scale-103 duration-150 hover:text-links;
+  }
 }

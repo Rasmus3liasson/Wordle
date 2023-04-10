@@ -11,9 +11,9 @@ export default function ChooseLength({ selectLength, setSelectLength }: Props) {
   }
 
   return (
-    <div>
-      <h4>Hur många bokstäver?</h4>
-      <select value={selectLength} onChange={newSelectValue}>
+    <div className="flex flex-col items-center mt-5">
+      <h4 className="text-xl">Hur många bokstäver?</h4>
+      <select className="select" value={selectLength} onChange={newSelectValue}>
         <option value="5">5</option>
         <option value="6">6</option>
         <option value="7">7</option>

@@ -64,8 +64,8 @@ export default function Clock({
   });
 
   return (
-    <div>
-      <p>
+    <div className="flex flex-col items-center mt-5">
+      <p className="text-2xl">
         {" "}
         {hour.toString().padStart(2, "0")}:{minute.toString().padStart(2, "0")}:
         {second.toString().padStart(2, "0")}
