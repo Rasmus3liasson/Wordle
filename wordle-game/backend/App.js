@@ -11,6 +11,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static("../build"));
+app.use("/dist", express.static("./dist"));
 app.set("view engine", "ejs");
 app.use(cors());
 

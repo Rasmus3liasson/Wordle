@@ -19,7 +19,9 @@ export default function UniqueLetters({
 
   return (
     <div className="flex flex-col items-center mt-5">
-      <h4 className="text-xl">exclude same letters more than once</h4>
+      <h4 className="text-xl">
+        Inkludera samma bokstäver vid fler tillfällen?
+      </h4>
       <select
         className="select"
         value={uniqueLetters.toString()}

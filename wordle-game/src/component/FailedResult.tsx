@@ -6,10 +6,11 @@ interface Props {
 
 export default function FailedResult({ randomWord }: Props) {
   return (
-    <div>
-      <h4>Ordet vi var ute efter var {randomWord}</h4>
+    <div className="flex items-center flex-col">
+      <p className="text-3xl">Ordet vi var ute efter var:</p>
+      <span className="font-bold mt-2 text-2xl">{randomWord}</span>
       <a href="/game">
-        <button>Kör igen</button>
+        <button className="button">Kör igen</button>
       </a>
     </div>
   );

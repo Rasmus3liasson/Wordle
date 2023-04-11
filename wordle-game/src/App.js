@@ -121,7 +121,7 @@ function App() {
                     onClick={() => {
                       setModal(false);
                     }}
-                    className="border-2 border-white p-3 rounded-full mt-9 hover:bg-white hover:text-dark duration-200 ease-in hover:border-dark active:scale-105"
+                    className="button"
                   >
                     Starta Spelet
                   </button>
@@ -237,6 +237,9 @@ function App() {
               ))}
             </div>
           </div>
+          <Fragment>
+            <Keyboard />
+          </Fragment>
         </div>
       )}
 
@@ -256,10 +259,6 @@ function App() {
           ) : null}
         </div>
       }
-
-      <Fragment>
-        <Keyboard />
-      </Fragment>
     </div>
   );
 }
