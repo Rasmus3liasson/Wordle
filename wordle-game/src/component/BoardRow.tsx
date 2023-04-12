@@ -72,9 +72,9 @@ export default function Board({
   return (
     <div
       id="background-color"
-      className={`w-20 h-20 p-2 flex items-center justify-center rounded-lg shadow-box hover:scale-103 duration-150 ${boxColor}`}
+      className={`w-12 h-12 md:w-20 md:h-20 p-2 flex items-center justify-center rounded-lg shadow-box hover:scale-103 duration-150 ${boxColor}`}
     >
-      <p id="box-letter" className="text-white text-4xl font ">
+      <p id="box-letter" className="text-white text-3xl md:text-4xl font ">
         {letterWord}
       </p>
     </div>

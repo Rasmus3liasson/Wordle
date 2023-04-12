@@ -86,7 +86,7 @@ function App() {
   }
 
   return (
-    <div className="App font-montserrat h-full p-0 box-border scroll-smooth bg-dark text-white">
+    <div className="App font-montserrat m-0 h-full p-0 box-border scroll-smooth bg-dark text-white">
       <div className="border-b-4 pb-7">
         <h1 className="text-7xl text-center pt-7">Wordle</h1>
         <div>
@@ -95,15 +95,17 @@ function App() {
       </div>
 
       {modal && (
-        <div className="fixed z-10 inset-0 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center">
-            <div className="fixed inset-0 transition-opacity">
-              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
+        <div className="fixed">
+          <div className="flex items-center justify-center pt-4 px-4 pb-20 text-center">
+            {/*  <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-200 opacity-75"></div>
+            </div> */}
 
-            <div className=" flex justify-center shadow-xl transform transition-all ">
+            <div className=" flex justify-center transform transition-all">
               <div className="bg-dark px-4 pt-5 pb-4 rounded-lg">
-                <h3 className="text-xl text-center">Dina inställningar</h3>
+                <h3 className="text-center text-3xl font-medium">
+                  Dina inställningar
+                </h3>
                 <div>
                   <Fragment>
                     <ChooseLength
@@ -236,29 +238,28 @@ function App() {
                 />
               ))}
             </div>
+            {
+              <div className="mt-12">
+                {arrToString === randomWord ? (
+                  <CompletedResult
+                    uniqueLetters={uniqueLetters}
+                    selectLength={selectLength}
+                    guessCount={numberGuess}
+                    time={time}
+                  />
+                ) : null}
+                {letterGuess6.length >= boardStart.length &&
+                arrToString !== randomWord ? (
+                  <FailedResult randomWord={randomWord} />
+                ) : null}
+              </div>
+            }
           </div>
           <Fragment>
             <Keyboard />
           </Fragment>
         </div>
       )}
-
-      {
-        <div>
-          {arrToString === randomWord ? (
-            <CompletedResult
-              uniqueLetters={uniqueLetters}
-              selectLength={selectLength}
-              guessCount={numberGuess}
-              time={time}
-            />
-          ) : null}
-          {letterGuess6.length >= boardStart.length &&
-          arrToString !== randomWord ? (
-            <FailedResult randomWord={randomWord} />
-          ) : null}
-        </div>
-      }
     </div>
   );
 }

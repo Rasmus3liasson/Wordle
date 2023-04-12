@@ -29,6 +29,7 @@ highscoreRoute.get("/", async (req, res) => {
 
   res.render("highscore", {
     highscoreDetails,
+    currentPage: "highscore",
   });
 });
 

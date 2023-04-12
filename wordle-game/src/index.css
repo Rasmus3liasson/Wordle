@@ -19,12 +19,15 @@
     @apply bg-red scale-103;
   }
   .select {
-    @apply text-dark py-1 rounded-lg text-xl px-2 mt-1;
+    @apply text-dark py-1 rounded-lg text-xl px-2 mt-7;
   }
   .links {
     @apply hover:scale-103 duration-150 hover:text-links;
   }
   .button {
-    @apply border-2 border-white p-3 rounded-full mt-9 hover:bg-white hover:text-dark duration-200 ease-in hover:border-dark active:scale-105;
+    @apply border-2 border-white p-3 rounded-full mt-9 hover:bg-white hover:text-dark duration-200 ease-in hover:border-dark active:scale-105 md:scale-150;
+  }
+  .current-page {
+    @apply underline hover:no-underline duration-200 ease-in;
   }
 }

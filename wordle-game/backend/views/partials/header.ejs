@@ -1,18 +1,32 @@
 <div class="border-b-4 pb-7">
-  <h1 class="text-7xl text-center mt-7">Wordle</h1>
+  <h1 class="text-7xl text-center pt-7">Wordle</h1>
   <div>
     <div class="flex items-center justify-center flex-col mt-6">
       <ul class="flex gap-8 text-2xl">
-        <a href="/game">
+        <a class="links" href="/game">
           <li>Game</li>
         </a>
-        <a href="/information">
+        <% if (currentPage === 'information') { %>
+        <a class="current-page links" href="/information">
           <li>Information</li>
         </a>
-
-        <a href="/highscore">
-          <li>Highscore list</li>
+        <% } else { %>
+        <a class="links" href="/information">
+          <li>Information</li>
         </a>
+        <% } %> <% if (currentPage === 'highscore') { %>
+        <a class="current-page links" href="/highscore">
+          <li>Highscore</li>
+        </a>
+        <% } else { %>
+        <a class="links" href="/highscore">
+          <li>Highscore</li>
+        </a>
+        <% } %>
+
+        <!--   <a class="current-page links" href="/highscore">
+          <li>Highscore list</li>
+        </a> -->
       </ul>
     </div>
   </div>

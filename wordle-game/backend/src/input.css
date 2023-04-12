@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .board-rows {
+    @apply flex justify-center items-center gap-2 mb-3;
+  }
+  .key-caps {
+    @apply border-2 p-3 rounded-lg bg-dark hover:scale-105 duration-75 ease-in hover:opacity-95;
+  }
+  .yellow-color {
+    @apply bg-yellow scale-103;
+  }
+  .green-color {
+    @apply bg-green scale-103;
+  }
+  .red-color {
+    @apply bg-red scale-103;
+  }
+  .select {
+    @apply text-dark py-1 rounded-lg text-xl px-2 mt-7;
+  }
+  .links {
+    @apply hover:scale-103 duration-150 hover:text-links;
+  }
+  .button {
+    @apply border-2 border-white p-3 rounded-full mt-9 hover:bg-white hover:text-dark duration-200 ease-in hover:border-dark active:scale-105;
+  }
+  .current-page {
+    @apply underline hover:no-underline duration-200 ease-in;
+  }
+}

@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../dist/output.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Wordle</title>
   </head>
   <body>
-    <%-include("./partials/header")%>
-    <div>Information</div>
+    <main
+      class="font-montserrat mt-0 h-full p-0 box-border scroll-smooth bg-dark text-white"
+    >
+      <div><%-include("./partials/header")%></div>
+    </main>
   </body>
 </html>

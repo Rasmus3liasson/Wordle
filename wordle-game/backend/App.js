@@ -21,7 +21,7 @@ app.use("/api/words", words);
 app.use("/highscore", routesHighscore);
 
 app.get("/information", (req, res) => {
-  res.render("information");
+  res.render("information", { currentPage: "information" });
 });
 
 app.get("/game", (req, res) => {
