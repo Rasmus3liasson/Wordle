@@ -1,10 +1,12 @@
 import express from "express";
 import highscoreData from "./server/highscoreData.js";
-import words from "./server/words.js";
 import routesHighscore from "./server/routesHighscore.js";
+import randomWord from "./server/randomWord.js";
+
 import fs from "fs";
 import cors from "cors";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const app = express();
@@ -15,9 +17,9 @@ app.use("/dist", express.static("./dist"));
 app.set("view engine", "ejs");
 app.use(cors());
 
-//api and highscore filters
+//api and highscore filters and randomword
 app.use("/api/highscoredata", highscoreData);
-app.use("/api/words", words);
+app.use("/api/randomword", randomWord);
 app.use("/highscore", routesHighscore);
 
 app.get("/information", (req, res) => {
@@ -33,6 +35,16 @@ app.get("/game", (req, res) => {
       res.send(data);
     }
   });
+});
+
+let settingData = null;
+app.post("/api/settings", (req, res) => {
+  settingData = req.body.data;
+
+  res.send("Data received");
+});
+app.get("/settings", (req, res) => {
+  res.json({ settingData: settingData });
 });
 
 app.listen(5080);

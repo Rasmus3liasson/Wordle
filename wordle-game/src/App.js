@@ -3,7 +3,6 @@ import BoardRow from "./component/BoardRow.tsx";
 import { BoardStart } from "./component/BoardStart.tsx";
 import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./functions/checkGuess.ts";
-import { generateRandomWord } from "./functions/randomWord.ts";
 import Clock from "./component/Clock.tsx";
 import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
@@ -27,22 +26,31 @@ function App() {
   let row = 0;
   const boardStart = BoardStart(selectLength);
 
-  async function getRandomWord() {
-    const res = await fetch("/api/words");
+  const settingData = {
+    data: [
+      { wordLength: selectLength },
+      { excludeUniqueLetters: uniqueLetters },
+    ],
+  };
+
+  fetch("http://localhost:5080/api/settings", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(settingData),
+  });
+
+  async function retrieveRandomWord() {
+    const res = await fetch("http://localhost:5080/api/randomword");
     const data = await res.json();
-    const words = data.data.wordList;
-    const randomWord = generateRandomWord(
-      words.toUpperCase().split(" "),
-      selectLength,
-      uniqueLetters
-    );
+    const randomWord = data.data.randomWord;
+    console.log(data.data.randomWord);
+
     setRandomWord(randomWord);
-    console.log(randomWord);
   }
 
   //change randomword with game settings changes
   useEffect(() => {
-    getRandomWord();
+    retrieveRandomWord();
   }, [selectLength, uniqueLetters]);
 
   let valueColor;
