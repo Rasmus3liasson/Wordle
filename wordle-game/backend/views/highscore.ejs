@@ -15,28 +15,31 @@
     <main
       class="font-montserrat mt-0 h-full p-0 box-border scroll-smooth bg-dark text-white"
     >
-      <div>
-        <%-include("./partials/header")%>
+      <%-include("./partials/header")%>
+      <div class="h-screen overflow-y-scroll">
         <div
           class="pb-7 flex justify-center items-center flex-col md:grid md:grid-cols-3 md:gap-4"
         >
           <% highscoreDetails.forEach((score) => { %>
 
           <div
-            class="flex items-center gap-3 lg:gap:4 m-7 p-2 md:p-4 border-2 border-red rounded-lg"
+            class="flex items-center gap-3 lg:gap:4 m-7 p-2 md:p-4 border-2 border-white rounded-lg hover:scale-103 duration-200 ease-in"
           >
-            <p>Name: <%= score.name %></p>
-            <p>Time: <%= score.time %></p>
-            <p>Guesses: <%= score.guesses %></p>
-            <p>Word Length: <%= score.wordLength %></p>
-            <p>Exclude Unique Letters: <%= score.excludeUniqueLetters %></p>
+            <div>
+              <p>Name: <%= score.name %></p>
+              <p>Time: <%= score.time %></p>
+              <p>Guesses: <%= score.guesses %></p>
+              <p>Word Length: <%= score.wordLength %></p>
+              <p>Exclude Unique Letters: <%= score.excludeUniqueLetters %></p>
+            </div>
           </div>
+
           <% }); %>
-          <div class="flex items-center justify-center">
-            <a class="button" href="/highscore"
-              ><button>Se alla highscores</button></a
-            >
-          </div>
+        </div>
+        <div class="flex items-center justify-center mb-9">
+          <a class="button" href="/highscore"
+            ><button>Se alla highscores</button></a
+          >
         </div>
       </div>
     </main>
