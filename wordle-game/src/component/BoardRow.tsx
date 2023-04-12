@@ -25,47 +25,45 @@ export default function Board({
 
   let boxColor = backgroundColor || "bg-dark";
 
-  useEffect(() => {
-    function handleKeyPress(event) {
-      //new array to make letters stay
-      let arr = [...state];
+  function handleKeyPress(event) {
+    //new array to make letters stay
+    let arr = [...state];
 
-      // when boardrow is filled, then function will move to next row
-      if (arr.length === boardStartLength) {
-        return;
-      }
-
-      //passing row number to function that set new value to guess
-      const guessCount = row;
-      handleGuessCount(guessCount);
-
-      arr[activeIndex] = event.key.toUpperCase();
-
-      //only allow letters and no enter key letters
-      if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
-        setState(arr);
-      } else {
-        return false;
-      }
-
-      if (activeIndex < boardStartLength) {
-        setActiveIndex(activeIndex + 1);
-      }
-      if (arr.length === boardStartLength) {
-        arr = [];
-      }
+    // when boardrow is filled, then function will move to next row
+    if (arr.length === boardStartLength) {
+      return;
     }
 
-    let guess = state.toString().replace(/,/g, "");
-    if (guess.length === boardStartLength && guess === randomWord) {
-      console.log("hej");
-      document.removeEventListener("keypress", handleKeyPress);
+    //passing row number to function that set new value to guess
+    const guessCount = row;
+    handleGuessCount(guessCount);
+
+    arr[activeIndex] = event.key.toUpperCase();
+
+    //only allow letters and no enter key letters
+    if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
+      setState(arr);
     } else {
-      document.addEventListener("keypress", handleKeyPress);
+      return false;
+    }
+
+    if (activeIndex < boardStartLength) {
+      setActiveIndex(activeIndex + 1);
+    }
+    if (arr.length === boardStartLength) {
+      arr = [];
+    }
+  }
+  useEffect(() => {
+    let guess = state.toString().replace(/,/g, "");
+    document.addEventListener("keydown", handleKeyPress);
+
+    if (guess.length === boardStartLength && guess === randomWord) {
+      document.removeEventListener("keydown", handleKeyPress);
     }
 
     return () => {
-      document.removeEventListener("keypress", handleKeyPress);
+      document.removeEventListener("keydown", handleKeyPress);
     };
   });
 
@@ -73,6 +71,7 @@ export default function Board({
     <div
       id="background-color"
       className={`w-12 h-12 md:w-20 md:h-20 p-2 flex items-center justify-center rounded-lg shadow-box hover:scale-103 duration-150 ${boxColor}`}
+      onKeyDown={handleKeyPress}
     >
       <p id="box-letter" className="text-white text-3xl md:text-4xl font ">
         {letterWord}

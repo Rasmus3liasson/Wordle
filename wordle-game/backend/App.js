@@ -37,11 +37,12 @@ app.get("/game", (req, res) => {
   });
 });
 
+//user choice of length och uniqueletters
 let settingData = null;
 app.post("/api/settings", (req, res) => {
   settingData = req.body.data;
 
-  res.send("Data received");
+  res.send("Settings received");
 });
 app.get("/settings", (req, res) => {
   res.json({ settingData: settingData });
