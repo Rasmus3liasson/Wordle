@@ -4,7 +4,7 @@ const row1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "Å"];
 const row2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "Ö", "Ä"];
 const row3 = ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "DELETE"];
 
-export function clickKeyBoard(event) {
+export function clickKeyBoard(event: { target: { innerText: any } }) {
   const keys = [...row1, ...row2, ...row3];
   const clickKey = event.target.innerText;
 

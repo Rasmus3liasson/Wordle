@@ -9,7 +9,7 @@ export default function UniqueLetters({
   uniqueLetters,
   setUniqueLetters,
 }: Props) {
-  function changeUniqueLetters(event) {
+  function changeUniqueLetters(event: { target: { value: string } }) {
     if (event.target.value === "true") {
       setUniqueLetters(true);
     } else {

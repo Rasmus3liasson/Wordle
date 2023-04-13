@@ -25,7 +25,7 @@ export default function Board({
 
   let boxColor = backgroundColor || "bg-dark";
 
-  function handleKeyPress(event) {
+  function handleKeyPress(event: { key: string; keyCode: number }) {
     //new array to make letters stay
     let arr = [...state];
 

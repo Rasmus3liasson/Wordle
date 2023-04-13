@@ -17,7 +17,7 @@ export default function CompletedResult({
   const [nameText, setNameText] = useState("Fyll i ditt namn");
   const [sendHighscore, setSendHighscore] = useState(false);
 
-  function submit(event) {
+  function submit(event: { preventDefault: () => void }) {
     event.preventDefault();
 
     if (nameValue !== "") {
