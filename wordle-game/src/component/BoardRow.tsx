@@ -7,6 +7,7 @@ interface Props {
   letterWord: string;
   state: string[];
   randomWord: string;
+  setGameInPlay;
   handleGuessCount: (number: number) => void;
   setState: (letters: string[]) => void;
 }
@@ -20,6 +21,7 @@ export default function Board({
   randomWord,
   handleGuessCount,
   setState,
+  setGameInPlay,
 }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -50,6 +52,13 @@ export default function Board({
     if (activeIndex < boardStartLength) {
       setActiveIndex(activeIndex + 1);
     }
+
+    // removing the board if correct word is guessed
+    let check = arr.toString().replace(/,/g, "");
+    if (check === randomWord) {
+      setGameInPlay(false);
+    }
+
     if (arr.length === boardStartLength) {
       arr = [];
     }

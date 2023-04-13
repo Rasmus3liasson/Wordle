@@ -5,6 +5,7 @@ interface Props {
   guessCount: number;
   selectLength: number;
   uniqueLetters: boolean;
+  randomWord: string;
 }
 
 export default function CompletedResult({
@@ -12,6 +13,7 @@ export default function CompletedResult({
   guessCount,
   selectLength,
   uniqueLetters,
+  randomWord,
 }: Props) {
   const [nameValue, setNameValue] = useState("");
   const [nameText, setNameText] = useState("Fyll i ditt namn");
@@ -55,6 +57,12 @@ export default function CompletedResult({
             action=""
             onSubmit={submit}
           >
+            <div>
+              <h2>Grattis du klarade det!</h2>
+              <h3>Ordet var: {randomWord}</h3>
+              <h3>Din tid: {time}</h3>
+              <h3>Ordets längd: {selectLength}</h3>
+            </div>
             <div className="flex flex-col gap-2">
               <label className="text-3xl" aria-label="Fyll i ditt namn">
                 {nameText}
