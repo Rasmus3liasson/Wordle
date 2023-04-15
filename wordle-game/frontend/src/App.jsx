@@ -37,7 +37,7 @@ function App() {
   };
 
   //post setting based on user input
-  fetch("http://localhost:5080/api/settings", {
+  fetch("/api/settings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(settingData),
@@ -45,7 +45,6 @@ function App() {
 
   async function getRandomWord() {
     const wordFromServer = await retrieveRandomWord();
-    console.log(wordFromServer);
 
     setRandomWord(wordFromServer);
   }
