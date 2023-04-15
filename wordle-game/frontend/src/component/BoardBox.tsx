@@ -12,7 +12,7 @@ interface Props {
   setState: (letters: string[]) => void;
 }
 
-export default function Board({
+export default function BoardBox({
   backgroundColor,
   boardStartLength,
   row,

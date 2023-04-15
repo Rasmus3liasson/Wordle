@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import BoardRow from "./component/BoardRow.tsx";
+import BoardBox from "./component/BoardBox.tsx";
 import { boardStart } from "./functions/boardStart.ts";
 import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./functions/checkGuess.ts";
@@ -28,6 +28,7 @@ function App() {
   let row = 0;
   const boardLength = boardStart(selectLength);
 
+  //parse int to change string value from option
   const settingData = {
     data: [
       { wordLength: parseInt(selectLength) },
@@ -80,14 +81,7 @@ function App() {
     setColorBox(letterGuess4);
     setColorBox(letterGuess5);
     setColorBox(letterGuess6);
-  }, [
-    letterGuess,
-    letterGuess2,
-    letterGuess3,
-    letterGuess4,
-    letterGuess5,
-    letterGuess6,
-  ]);
+  });
 
   //procces to next row
   if (letterGuess.length === boardLength.length) {
@@ -135,7 +129,7 @@ function App() {
                 <div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess, index)}
@@ -151,7 +145,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess2, index)}
@@ -167,7 +161,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess3, index)}
@@ -183,7 +177,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess4, index)}
@@ -199,7 +193,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess5, index)}
@@ -215,7 +209,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess6, index)}
