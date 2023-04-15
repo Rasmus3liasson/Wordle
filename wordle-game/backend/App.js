@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(express.static("../build"));
+app.use(express.static("../frontend/build"));
 app.use("/dist", express.static("./dist"));
 app.set("view engine", "ejs");
 app.use(cors());
@@ -27,7 +27,7 @@ app.get("/information", (req, res) => {
 });
 
 app.get("/game", (req, res) => {
-  fs.readFile("../build/index.html", "utf8", (err, data) => {
+  fs.readFile("../frontend/build/index.html", "utf8", (err, data) => {
     if (err) {
       console.error(err);
       res.status(404).send("Couldn't read file");

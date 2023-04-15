@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Fragment } from "react";
-import BoardRow from "./component/BoardRow.tsx";
+import BoardBox from "./component/BoardBox.tsx";
 import { boardStart } from "./functions/boardStart.ts";
 import { Keyboard } from "./component/Keyboard.tsx";
 import { checkGuess } from "./functions/checkGuess.ts";
@@ -8,6 +8,7 @@ import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
 import Nav from "./component/Nav.tsx";
 import Modal from "./component/Modal.tsx";
+import { retrieveRandomWord } from "./functions/retriveRandomWord.ts";
 
 function App() {
   const [numberGuess, setNumberGuess] = useState(1);
@@ -27,31 +28,30 @@ function App() {
   let row = 0;
   const boardLength = boardStart(selectLength);
 
+  //parse int to change string value from option
   const settingData = {
     data: [
-      { wordLength: selectLength },
+      { wordLength: parseInt(selectLength) },
       { excludeUniqueLetters: uniqueLetters },
     ],
   };
 
-  fetch("http://localhost:5080/api/settings", {
+  //post setting based on user input
+  fetch("/api/settings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(settingData),
   });
 
-  async function retrieveRandomWord() {
-    const res = await fetch("http://localhost:5080/api/randomword");
-    const data = await res.json();
-    const randomWord = data.data.randomWord;
-    console.log(data.data.randomWord);
+  async function getRandomWord() {
+    const wordFromServer = await retrieveRandomWord();
 
-    setRandomWord(randomWord);
+    setRandomWord(wordFromServer);
   }
 
   //change randomword with game settings changes
   useEffect(() => {
-    retrieveRandomWord();
+    getRandomWord();
   }, [selectLength, uniqueLetters]);
 
   let valueColor;
@@ -80,22 +80,12 @@ function App() {
     setColorBox(letterGuess4);
     setColorBox(letterGuess5);
     setColorBox(letterGuess6);
-  }, [
-    letterGuess,
-    letterGuess2,
-    letterGuess3,
-    letterGuess4,
-    letterGuess5,
-    letterGuess6,
-  ]);
+  });
 
+  //procces to next row
   if (letterGuess.length === boardLength.length) {
     row++;
   }
-
-  const handleTime = (newTime) => {
-    setTime(newTime);
-  };
 
   //function to set value of how many guesses
   function handleGuessCount(count) {
@@ -128,7 +118,6 @@ function App() {
                 <div>
                   <Clock
                     setTime={setTime}
-                    handleTime={handleTime}
                     firstWord={letterGuess}
                     guessWord={arrToString}
                     randomWord={randomWord}
@@ -139,7 +128,7 @@ function App() {
                 <div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess, index)}
@@ -155,7 +144,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess2, index)}
@@ -171,7 +160,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess3, index)}
@@ -187,7 +176,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess4, index)}
@@ -203,7 +192,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess5, index)}
@@ -219,7 +208,7 @@ function App() {
                   </div>
                   <div className="board-rows">
                     {boardLength.map((letter, index) => (
-                      <BoardRow
+                      <BoardBox
                         setGameInPlay={setGameInPlay}
                         randomWord={randomWord}
                         backgroundColor={setColorBox(letterGuess6, index)}
