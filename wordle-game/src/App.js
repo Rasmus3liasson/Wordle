@@ -8,6 +8,7 @@ import CompletedResult from "./component/CompletedResult.tsx";
 import FailedResult from "./component/FailedResult.tsx";
 import Nav from "./component/Nav.tsx";
 import Modal from "./component/Modal.tsx";
+import { retrieveRandomWord } from "./functions/retriveRandomWord.ts";
 
 function App() {
   const [numberGuess, setNumberGuess] = useState(1);
@@ -29,29 +30,28 @@ function App() {
 
   const settingData = {
     data: [
-      { wordLength: selectLength },
+      { wordLength: parseInt(selectLength) },
       { excludeUniqueLetters: uniqueLetters },
     ],
   };
 
+  //post setting based on user input
   fetch("http://localhost:5080/api/settings", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(settingData),
   });
 
-  async function retrieveRandomWord() {
-    const res = await fetch("http://localhost:5080/api/randomword");
-    const data = await res.json();
-    const randomWord = data.data.randomWord;
-    console.log(data.data.randomWord);
+  async function getRandomWord() {
+    const wordFromServer = await retrieveRandomWord();
+    console.log(wordFromServer);
 
-    setRandomWord(randomWord);
+    setRandomWord(wordFromServer);
   }
 
   //change randomword with game settings changes
   useEffect(() => {
-    retrieveRandomWord();
+    getRandomWord();
   }, [selectLength, uniqueLetters]);
 
   let valueColor;
@@ -89,13 +89,10 @@ function App() {
     letterGuess6,
   ]);
 
+  //procces to next row
   if (letterGuess.length === boardLength.length) {
     row++;
   }
-
-  const handleTime = (newTime) => {
-    setTime(newTime);
-  };
 
   //function to set value of how many guesses
   function handleGuessCount(count) {
@@ -128,7 +125,6 @@ function App() {
                 <div>
                   <Clock
                     setTime={setTime}
-                    handleTime={handleTime}
                     firstWord={letterGuess}
                     guessWord={arrToString}
                     randomWord={randomWord}

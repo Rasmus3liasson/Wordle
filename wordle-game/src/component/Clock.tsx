@@ -6,7 +6,6 @@ interface Props {
   lastGuess: number;
   boardStartLength: number;
   firstWord: string;
-  handleTime: (time: string) => void;
   setTime: (time: string) => void;
 }
 
@@ -16,7 +15,6 @@ export default function Clock({
   lastGuess,
   boardStartLength,
   firstWord,
-  handleTime,
   setTime,
 }: Props) {
   const [hour, setHour] = useState(0);
@@ -28,6 +26,11 @@ export default function Clock({
     if (guessWord === randomWord || lastGuess >= boardStartLength) {
       return;
     }
+
+    //setting time
+    const handleTime = (newTime: string) => {
+      setTime(newTime);
+    };
 
     //start when letter has been entered
     if (firstWord.length >= 1) {

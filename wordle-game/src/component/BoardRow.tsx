@@ -42,8 +42,43 @@ export default function Board({
 
     arr[activeIndex] = event.key.toUpperCase();
 
-    //only allow letters and no enter key letters
-    if (arr[activeIndex].match("[A-Öa-ö]") && event.keyCode !== 13) {
+    //disallowed keys
+    const notAllowed = [
+      13,
+      8,
+      192,
+      9,
+      20,
+      16,
+      17,
+      18,
+      91,
+      93,
+      18,
+      38,
+      37,
+      40,
+      39,
+      ,
+      187,
+      27,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      123,
+    ];
+    //only allow letters and no enter or delete key letters
+    if (
+      arr[activeIndex].match("[A-Öa-ö]") &&
+      !notAllowed.includes(event.keyCode)
+    ) {
       setState(arr);
     } else {
       return false;
