@@ -1,13 +1,12 @@
-export function checkGuess(wordFromUser:string, randomWord:string) {
+export function checkGuess(wordFromUser: string, randomWord: string) {
   const guessWord = wordFromUser.split("");
   const correctWord = randomWord.toUpperCase().split("");
-  
 
   //array variables
 
-  let letterArr:string[] = [];
-  let incorrectArr:string[] = [];
-  let sameIndexArr:string[] = [];
+  let letterArr: string[] = [];
+  let incorrectArr: string[] = [];
+  let sameIndexArr: string[] = [];
 
   //function to check if guessWord match index of correctWord
   function sameIndex() {
@@ -39,7 +38,7 @@ export function checkGuess(wordFromUser:string, randomWord:string) {
   //pushing objects to array with temorarly value
   for (let i = 0; i < guessWord.length; i++) {
     let obj = {};
-  
+
     obj[guessWord[i]] = "correct";
     letterArr.push(obj);
   }

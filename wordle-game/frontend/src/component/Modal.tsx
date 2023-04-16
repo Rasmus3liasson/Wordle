@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import ChooseLength from "./ChooseLength.tsx";
 import UniqueLetters from "./UniqueLetters.tsx";
 
@@ -9,6 +9,23 @@ export default function Modal({
   uniqueLetters,
   setUniqueLetters,
 }) {
+  useEffect(() => {
+    //parse int to change string value from option
+    const settingData = {
+      data: [
+        { wordLength: parseInt(selectLength) },
+        { excludeUniqueLetters: uniqueLetters },
+      ],
+    };
+
+    //post setting based on user input
+    fetch("/api/settings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(settingData),
+    });
+  }, [selectLength, uniqueLetters]);
+
   return (
     <div className="pt-4 px-4 pb-20 text-center fixed md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/3">
       <div className="bg-dark px-4 pt-5 pb-4 rounded-lg md:scale-125">
