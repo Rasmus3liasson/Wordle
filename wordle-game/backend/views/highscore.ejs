@@ -36,10 +36,19 @@
 
           <% }); %>
         </div>
-        <div class="flex items-center justify-center mb-9">
-          <a class="button" href="/highscore"
-            ><button>Se alla highscores</button></a
-          >
+        <div class="flex items-center justify-center flex-col mb-7">
+          <h4 class="mb-9 text-3xl">Filtera efter längd</h4>
+          <div>
+            <a class="button" href="/highscore?wordlength=5"
+              ><button>5</button></a
+            >
+            <a class="button" href="/highscore?wordlength=6"
+              ><button>6</button></a
+            >
+            <a class="button" href="/highscore?wordlength=7"
+              ><button>7</button></a
+            >
+          </div>
         </div>
       </div>
     </main>

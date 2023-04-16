@@ -1,7 +1,7 @@
 import express from "express";
-import highscoreData from "./server/highscoreData.js";
-import routesHighscore from "./server/routesHighscore.js";
-import randomWord from "./server/randomWord.js";
+import highscoreData from "./src/server/highscoreData.js";
+import routesHighscore from "./src/server/routesHighscore.js";
+import randomWord from "./src/server/randomWord.js";
 
 import fs from "fs";
 import cors from "cors";
