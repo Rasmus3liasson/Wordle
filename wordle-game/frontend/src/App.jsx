@@ -40,13 +40,12 @@ function App() {
     getRandomWord();
   }, [selectLength, uniqueLetters]);
 
-  let valueColor;
-  let arrToString;
+  let guessWord;
 
   function setColorBox(word, index) {
     if (word.length === boardLength.length) {
-      arrToString = word.toString().replace(/,/g, "");
-      valueColor = checkGuess(arrToString, randomWord);
+      guessWord = word.toString().replace(/,/g, "");
+      let valueColor = checkGuess(guessWord, randomWord);
 
       if (valueColor[index] === "misplaced") {
         return "yellow-color";
@@ -105,7 +104,7 @@ function App() {
                   <Clock
                     setTime={setTime}
                     firstWord={letterGuess}
-                    guessWord={arrToString}
+                    guessWord={guessWord}
                     randomWord={randomWord}
                     lastGuess={letterGuess6.length}
                     boardStartLength={boardLength.length}
@@ -210,7 +209,7 @@ function App() {
                   </div>
                 </div>
                 {letterGuess6.length >= boardLength.length &&
-                arrToString !== randomWord ? (
+                guessWord !== randomWord ? (
                   <FailedResult randomWord={randomWord} />
                 ) : null}
               </>
