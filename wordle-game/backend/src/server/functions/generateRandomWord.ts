@@ -1,4 +1,4 @@
-export function generateRandomWord(
+export default function generateRandomWord(
   categoryArr: string[],
   lengthOfWord: number,
   excludeDuplicatedLetters: boolean
