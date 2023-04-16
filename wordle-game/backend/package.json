@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend Wordle-Game",
   "main": "App.ts",
+  "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-modules App.js",
     "start": "node --experimental-modules App.js",
