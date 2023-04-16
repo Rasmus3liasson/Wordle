@@ -1,11 +1,11 @@
 import express from "express";
 import mongoose from "mongoose";
-import HighScore from "./schema.js";
+import HighScore from "./schema";
 
 const highscoreData = express.Router();
 
 highscoreData.get("/", async (req, res) => {
-  const conn = await mongoose.connect(process.env.HighscoreDatabas);
+  const conn = await mongoose.connect(process.env.HighscoreDatabas as string);
   //sort by fastest time
   const highscoreData = await HighScore.find().sort({ time: 1 });
   conn.disconnect();
@@ -16,7 +16,7 @@ highscoreData.get("/", async (req, res) => {
 });
 
 highscoreData.post("/", async (req, res) => {
-  const conn = await mongoose.connect(process.env.HighscoreDatabas);
+  const conn = await mongoose.connect(process.env.HighscoreDatabas as string);
 
   const { name, time, guesses, wordLength, excludeUniqueLetters } = req.body;
 

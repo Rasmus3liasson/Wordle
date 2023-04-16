@@ -1,7 +1,7 @@
 import express from "express";
-import highscoreData from "./src/server/highscoreData.js";
-import routesHighscore from "./src/server/routesHighscore.js";
-import randomWord from "./src/server/randomWord.js";
+import highscoreData from "./src/server/highscoreData";
+import routesHighscore from "./src/server/routesHighscore";
+import randomWord from "./src/server/randomWord";
 
 import fs from "fs";
 import cors from "cors";
@@ -38,7 +38,7 @@ app.get("/game", (req, res) => {
 });
 
 //user choice of length och uniqueletters
-let settingData = null;
+let settingData: null = null;
 app.post("/api/settings", (req, res) => {
   settingData = req.body.data;
 

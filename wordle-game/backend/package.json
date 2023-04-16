@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Backend Wordle-Game",
   "main": "App.ts",
-  "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-modules App.js",
     "start": "node --experimental-modules App.js",
-    "ts": "ts-node --esm App.js",
+    "ts": "ts-node --esm App.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
@@ -27,6 +26,8 @@
     "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "tailwindcss": "^3.3.1"
   }
 }
