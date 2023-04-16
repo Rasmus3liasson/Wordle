@@ -28,23 +28,9 @@ function App() {
   let row = 0;
   const boardLength = boardStart(selectLength);
 
-  //parse int to change string value from option
-  const settingData = {
-    data: [
-      { wordLength: parseInt(selectLength) },
-      { excludeUniqueLetters: uniqueLetters },
-    ],
-  };
-
-  //post setting based on user input
-  fetch("/api/settings", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(settingData),
-  });
-
   async function getRandomWord() {
     const wordFromServer = await retrieveRandomWord();
+    console.log(wordFromServer);
 
     setRandomWord(wordFromServer);
   }
