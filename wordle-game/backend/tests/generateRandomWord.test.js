@@ -1,4 +1,4 @@
-import { generateRandomWord } from "../server/functions/generateRandomWord.js";
+import { generateRandomWord } from "../src/server/functions/generateRandomWord.js";
 import { describe, expect, test } from "@jest/globals";
 
 /* This is a unit-test to test the function that should return a a random word from a
