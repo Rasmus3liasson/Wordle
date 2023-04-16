@@ -8,7 +8,6 @@ highscoreData.get("/", async (req, res) => {
   const conn = await mongoose.connect(process.env.HighscoreDatabas);
   //sort by fastest time
   const highscoreData = await HighScore.find().sort({ time: 1 });
-  console.log(highscoreData);
   conn.disconnect();
 
   res.status(200).json({
