@@ -76,7 +76,7 @@ function App() {
   }
 
   return (
-    <div className="App font-montserrat m-0 h-screen p-0 box-border scroll-smooth bg-dark text-white">
+    <div className="App font-montserrat m-0 h-full p-0 box-border scroll-smooth bg-dark text-white">
       <div className="border-b-4 pb-7">
         <h1 className="text-7xl text-center pt-7">Wordle</h1>
         <div>
