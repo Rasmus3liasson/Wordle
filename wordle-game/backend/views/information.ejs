@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
     <title>Wordle</title>
   </head>
   <body>
@@ -16,6 +20,53 @@
       class="font-montserrat mt-0 h-full p-0 box-border scroll-smooth bg-dark text-white"
     >
       <div><%-include("./partials/header")%></div>
+
+      <div class="flex justify-center items-center flex-col p-6">
+        <h1 class="text-3xl md:text-7xl text-center pt-7">
+          Mitt första projekt i React
+        </h1>
+        <p class="mt-9 text-xl md:text-2xl">
+          Projektet är ett ordspel som ska likna en klon utav Wordle
+        </p>
+      </div>
+      <div class="flex justify-center items-center flex-col p-6 mt-9">
+        <p class="text-2xl">Tekniker som jag har använt mig utav är:</p>
+
+        <ul class="text-5xl flex justify-center items-center gap-6 mt-5">
+          <div class="md:flex md:items-center md:gap-6">
+            <li>
+              <i class="devicon-nodejs-plain-wordmark"></i>
+            </li>
+            <li>
+              <i class="devicon-express-original-wordmark"></i>
+            </li>
+            <li>
+              <i class="devicon-react-original"></i>
+            </li>
+          </div>
+          <div class="md:flex md:items-center md:gap-6">
+            <li>
+              <i class="devicon-tailwindcss-original-wordmark"></i>
+            </li>
+            <li>
+              <i class="devicon-mongodb-plain-wordmark"></i>
+            </li>
+            <li>
+              <i class="devicon-jest-plain"></i>
+            </li>
+          </div>
+        </ul>
+      </div>
+
+      <div class="flex justify-center items-center mt-28 mx-8 pb-9">
+        <p class="text-3xl">
+          Spelet har byggts som en fullstack-applikation med tre sidor
+          (routes/URL:er): <br />
+          En startsida där man kan spela spelet, en statisk informationssida om
+          projektet, och en server-side renderad highscore-lista. <br />
+          Sidan servas med hjälp av node på port 5080, exempelvis med av express
+        </p>
+      </div>
     </main>
   </body>
 </html>

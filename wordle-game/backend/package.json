@@ -8,7 +8,8 @@
     "dev": "nodemon --experimental-modules App.js",
     "start": "node --experimental-modules App.js",
     "ts": "ts-node --esm App.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "author": "Rasmus Eliasson",
   "license": "ISC",

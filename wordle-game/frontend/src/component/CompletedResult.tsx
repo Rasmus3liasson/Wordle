@@ -49,7 +49,7 @@ export default function CompletedResult({
   return (
     <div className="text-center mt-6">
       {sendHighscore ? (
-        <p>Tack för inlämningen!</p>
+        <p className="text-3xl">Tack för din inlämningen!</p>
       ) : (
         <div className="flex justify-center items-center">
           <form
@@ -57,9 +57,12 @@ export default function CompletedResult({
             action=""
             onSubmit={submit}
           >
-            <div>
-              <h2>Grattis du klarade det!</h2>
-              <h3>Ordet var: {randomWord}</h3>
+            <div className="text-xl">
+              <h2 className="text-2xl">Grattis du klarade det!</h2>
+              <h3>
+                Ordet var:{" "}
+                <span className="font-bold mt-2 text-2xl">{randomWord}</span>
+              </h3>
               <h3>Din tid: {time}</h3>
               <h3>Ordets längd: {selectLength}</h3>
             </div>

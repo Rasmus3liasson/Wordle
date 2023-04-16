@@ -22,7 +22,7 @@ export function clickKeyBoard(event: { target: { innerText: any } }) {
 
 export function Keyboard() {
   return (
-    <div className="flex flex-col justify-center items-center mt-20">
+    <div className="flex flex-col justify-center items-center mt-20 scale-75 md:scale-103">
       <div className="flex gap-1 mb-2">
         {row1.map((keyLetter, index) => {
           return (
