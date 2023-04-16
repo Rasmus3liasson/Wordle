@@ -30,7 +30,6 @@ function App() {
 
   async function getRandomWord() {
     const wordFromServer = await retrieveRandomWord();
-    console.log(wordFromServer);
 
     setRandomWord(wordFromServer);
   }
