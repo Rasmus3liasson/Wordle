@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Backend Wordle-Game",
   "main": "App.ts",
+  "proxy": "http://127.0.0.1:5080",
   "scripts": {
     "dev": "npx nodemon ./App.ts",
     "start": "ts-node --esm App.ts",

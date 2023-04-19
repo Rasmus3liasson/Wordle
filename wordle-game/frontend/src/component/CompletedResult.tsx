@@ -31,7 +31,7 @@ export default function CompletedResult({
         excludeUniqueLetters: uniqueLetters,
       };
 
-      fetch("http://localhost:5080/api/highscoredata", {
+      fetch("/api/highscoredata", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(highscoreData),

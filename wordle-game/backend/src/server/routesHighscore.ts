@@ -14,6 +14,7 @@ highscoreRoute.get("/", async (req, res) => {
   const wordLength: number = parseInt(req.query.wordlength as string);
   const guesses: number = parseInt(req.query.guesses as string);
   const excludeLetters: boolean = req.query.excludeLetters === "true";
+  //only works with hardcoded url dont know why
   const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = (await highscoreRes.json()) as highscoreData;
   let highscoreDetails = data.highscoreList;
