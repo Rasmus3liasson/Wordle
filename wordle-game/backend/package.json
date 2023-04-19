@@ -2,17 +2,16 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend Wordle-Game",
-  "main": "app.js",
-  "type": "module",
+  "main": "App.ts",
   "scripts": {
-    "dev": "nodemon --experimental-modules App.js",
-    "start": "node --experimental-modules App.js",
+    "start": "ts-node --esm App.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
   },
   "author": "Rasmus Eliasson",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^18.15.11",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
@@ -20,9 +19,13 @@
     "jest": "^29.5.0",
     "mongoose": "^7.0.3",
     "node-fetch": "^3.3.1",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
     "tailwindcss": "^3.3.1"
   }
 }

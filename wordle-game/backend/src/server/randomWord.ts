@@ -1,16 +1,22 @@
 import express from "express";
-import { wordList } from "../wordsFolder/words.js";
-import { generateRandomWord } from "./functions/generateRandomWord.js";
-import fetch from "node-fetch";
+import { wordList } from "../wordsFolder/words";
+import generateRandomWord from "./functions/generateRandomWord";
 
 const randomWord = express.Router();
 
+interface SettingData {
+  settingData: {
+    wordLength: string;
+    excludeUniqueLetters: boolean;
+  }[];
+}
+
 randomWord.get("/", async (req, res) => {
   //Only works with hardcoded path, dont know why
-  const response = await fetch("http://localhost:5080/api/settings");
-  const data = await response.json();
+  const response = await fetch("http://localhost:5080/settings");
+  const data = (await response.json()) as SettingData;
 
-  let settingLength = data.settingData[0].wordLength;
+  let settingLength = parseInt(data.settingData[0].wordLength);
   let settingUniqueLetters = data.settingData[1].excludeUniqueLetters;
 
   const generatedRandomWord = generateRandomWord(

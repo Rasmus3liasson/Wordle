@@ -1,7 +1,7 @@
-export function generateRandomWord(
-  categoryArr,
-  lengthOfWord,
-  excludeDuplicatedLetters
+export default function generateRandomWord(
+  categoryArr: string[],
+  lengthOfWord: number,
+  excludeDuplicatedLetters: boolean
 ) {
   let randomWordArr = [];
 
