@@ -7,7 +7,7 @@ const randomWord = express.Router();
 
 randomWord.get("/", async (req, res) => {
   //Only works with hardcoded path, dont know why
-  const response = await fetch("http://localhost:5080/settings");
+  const response = await fetch("http://localhost:5080/api/settings");
   const data = await response.json();
 
   let settingLength = data.settingData[0].wordLength;

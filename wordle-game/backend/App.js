@@ -44,7 +44,7 @@ app.post("/api/settings", (req, res) => {
 
   res.send("Settings received");
 });
-app.get("/settings", (req, res) => {
+app.get("/api/settings", (req, res) => {
   res.json({ settingData: settingData });
 });
 
