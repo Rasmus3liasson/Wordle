@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import HighScore from "./schema.ts";
+import HighScore from "./schema";
 
 const highscoreData = express.Router();
 

@@ -1,7 +1,6 @@
 import express from "express";
-import { wordList } from "../wordsFolder/words.ts";
-import generateRandomWord from "./functions/generateRandomWord.ts";
-import fetch from "node-fetch";
+import { wordList } from "../wordsFolder/words";
+import generateRandomWord from "./functions/generateRandomWord";
 
 const randomWord = express.Router();
 

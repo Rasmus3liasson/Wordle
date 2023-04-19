@@ -1,6 +1,6 @@
-import letters5 from "./letters5.ts";
-import letters6 from "./letters6.ts";
-import letters7 from "./letters7.ts";
+import letters5 from "./letters5";
+import letters6 from "./letters6";
+import letters7 from "./letters7";
 
 const words5Letters = letters5.words.join(" ");
 const words6Letters = letters6.words.join(" ");
