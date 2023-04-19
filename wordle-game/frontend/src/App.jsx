@@ -55,16 +55,6 @@ function App() {
     }
   }
 
-  //calling function so arrToString value isn't undefined so Clock component hava acces to the variable
-  useEffect(() => {
-    setColorBox(letterGuess);
-    setColorBox(letterGuess2);
-    setColorBox(letterGuess3);
-    setColorBox(letterGuess4);
-    setColorBox(letterGuess5);
-    setColorBox(letterGuess6);
-  });
-
   //procces to next row
   if (letterGuess.length === boardLength.length) {
     row++;
@@ -99,14 +89,7 @@ function App() {
             {gameInPlay && (
               <>
                 <div>
-                  <Clock
-                    setTime={setTime}
-                    firstWord={letterGuess}
-                    guessWord={guessWord}
-                    randomWord={randomWord}
-                    lastGuess={letterGuess6.length}
-                    boardStartLength={boardLength.length}
-                  />
+                  <Clock setTime={setTime} firstWord={letterGuess} />
                 </div>
                 <div>
                   <div className="board-rows">

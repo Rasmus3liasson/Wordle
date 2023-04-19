@@ -4,6 +4,7 @@
   "description": "Backend Wordle-Game",
   "main": "App.ts",
   "scripts": {
+    "dev": "npx nodemon ./App.ts",
     "start": "ts-node --esm App.ts",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "watch": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"

@@ -1,32 +1,16 @@
 import React, { useState, useEffect } from "react";
 
 interface Props {
-  guessWord: string;
-  randomWord: string;
-  lastGuess: number;
-  boardStartLength: number;
   firstWord: string;
   setTime: (time: string) => void;
 }
 
-export default function Clock({
-  guessWord,
-  randomWord,
-  lastGuess,
-  boardStartLength,
-  firstWord,
-  setTime,
-}: Props) {
+export default function Clock({ firstWord, setTime }: Props) {
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
 
   useEffect(() => {
-    //stop timer
-    if (guessWord === randomWord || lastGuess >= boardStartLength) {
-      return;
-    }
-
     //setting time
     const handleTime = (newTime: string) => {
       setTime(newTime);
