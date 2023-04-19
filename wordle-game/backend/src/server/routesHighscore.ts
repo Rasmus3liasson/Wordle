@@ -17,7 +17,6 @@ highscoreRoute.get("/", async (req, res) => {
   const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
   const data = (await highscoreRes.json()) as highscoreData;
   let highscoreDetails = data.highscoreList;
-  console.log(highscoreDetails);
 
   if (wordLength) {
     highscoreDetails = highscoreDetails.filter(
