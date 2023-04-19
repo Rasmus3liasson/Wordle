@@ -7,7 +7,7 @@ highscoreRoute.get("/", async (req, res) => {
   const wordLength = parseInt(req.query.wordlength);
   const guesses = parseInt(req.query.guesses);
   const excludeLetters = req.query.excludeLetters === "true";
-  const highscoreRes = await fetch("http://localhost:5080/api/highscoredata");
+  const highscoreRes = await fetch("/api/highscoredata");
   const data = await highscoreRes.json();
   let highscoreDetails = data.highscoreList;
 
