@@ -12,8 +12,9 @@ interface SettingData {
 }
 
 randomWord.get("/", async (req, res) => {
-  //Only works with hardcoded path, dont know why
-  const response = await fetch("http://localhost:5080/api/settings");
+  //was able to make this instead of fetching a hardcoded path, dont know why can't use /api/settings
+  const startUrl = `${req.protocol}://${req.get("host")}`;
+  const response = await fetch(`${startUrl}/api/settings`);
   const data = (await response.json()) as SettingData;
 
   let settingLength = parseInt(data.settingData[0].wordLength);
