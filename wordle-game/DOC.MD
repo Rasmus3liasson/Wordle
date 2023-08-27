@@ -2,7 +2,7 @@
 
 - Navigera till mappen backend
 
-- Kör kommandot *** npm run dev ***
+- Kör kommandot ***npm run dev***
 
 # API Documentation
 
