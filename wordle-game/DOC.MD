@@ -1,3 +1,9 @@
+# Starta projektet
+
+- Navigera till mappen backend
+
+- Kör kommandot *** npm run dev ***
+
 # API Documentation
 
 ### GET /api/highscoredata
